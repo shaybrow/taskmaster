@@ -1,6 +1,6 @@
 # taskmaster
 
-
+An app designed to create and track tasks and mark their completion. Still in development
 
 
 
