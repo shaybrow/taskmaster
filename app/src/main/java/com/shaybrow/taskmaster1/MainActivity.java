@@ -91,7 +91,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        Button sleep = findViewById(R.id.sleep);
+        sleep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent goSleep = new Intent(MainActivity.this, TaskDetails.class);
+                String title = ((Button)findViewById(R.id.sleep)).getText().toString();
+                goSleep.putExtra("taskTitle", title);
+                startActivity(goSleep);
 
+
+            }
+        });
     }
 
     @Override
