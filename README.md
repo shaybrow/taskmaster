@@ -2,9 +2,19 @@
 
 An app designed to create and track tasks and mark their completion. Still in development
 
+## Screenshot
 
+![](screenshots/task-details.PNG)
 
 ## Changelog
+
+### 4.27.21
+
+- added links to hardcoded tasks: get a job, meal prep, sleep which take in the title of the button and display on task details page
+
+- added simple unit test for add tasks page
+
+- added usersettings page and link which stores and displays username on home page
 
 ### 4.26.21
 
@@ -14,7 +24,7 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 - allTasks displays a title and image
 
-![](screenshots/homescreen.PNG)
+
 
 ## Attributions
 
