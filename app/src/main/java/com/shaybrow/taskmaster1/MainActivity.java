@@ -2,6 +2,8 @@ package com.shaybrow.taskmaster1;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,10 +13,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements TaskListAdapter.ClickOnTaskAble {
     public static  String TAG = "shayapp.main";
 
     @Override
@@ -59,6 +64,23 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToAllTasks);
             }
         });
+
+//        for creating a layout view on a different page
+        RecyclerView rv = findViewById(R.id.taskListView2);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(new TaskListAdapter(this));
+
+
+        Button recycle = findViewById(R.id.recyclerView);
+
+        recycle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, allTasks.class );
+                startActivity(intent);
+            }
+        });
+
 
         Button userProfile = findViewById(R.id.userProfileButton);
         userProfile.setOnClickListener(view ->{
@@ -109,6 +131,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+
+    }
+
+    @Override
+    public void handleClickOnTask(TaskListAdapter.TaskViewHolder taskViewHolder) {
+        Toast.makeText(this, taskViewHolder.design, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, TaskDetails.class);
+
+        intent.putExtra("taskTitle", taskViewHolder.design);
+        startActivity(intent);
 
     }
 }

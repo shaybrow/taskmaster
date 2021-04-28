@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class UserProfile extends AppCompatActivity {
@@ -28,7 +30,20 @@ public class UserProfile extends AppCompatActivity {
             prefEditor.apply();
             ((TextView) findViewById(R.id.usernameInput)).setText(username1);
         });
+        Button goHome = findViewById(R.id.returnHome);
 
+        goHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(UserProfile.this, MainActivity.class);
+//                where we're coming from, where we are going
+                startActivity(intent);
+
+
+
+            }
+        });
 
 
     }

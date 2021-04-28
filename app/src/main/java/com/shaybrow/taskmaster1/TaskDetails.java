@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 public class TaskDetails extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

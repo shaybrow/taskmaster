@@ -17,7 +17,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintVertical_bias="0.077" />
 
     <Button
         android:id="@+id/addTask"
@@ -41,18 +41,6 @@
         app:layout_constraintTop_toTopOf="@+id/addTask"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="192dp"
-        android:layout_height="185dp"
-        app:layout_constraintBottom_toTopOf="@+id/addTask"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myTasks"
-        app:srcCompat="@android:drawable/btn_dialog"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <Button
         android:id="@+id/userProfileButton"
         android:layout_width="wrap_content"
@@ -68,12 +56,12 @@
         android:id="@+id/usernameDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="368dp"
+        android:layout_marginTop="24dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="@+id/userProfileButton"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="@+id/myTasks"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileButton" />
+        app:layout_constraintTop_toBottomOf="@+id/addTask" />
 
     <Button
         android:id="@+id/getAJob"
@@ -107,5 +95,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/mealPrep"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/recyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="132dp"
+        android:text="Button"
+        app:layout_constraintEnd_toStartOf="@+id/userProfileButton"
+        app:layout_constraintTop_toBottomOf="@+id/myTasks" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskListView2"
+        android:layout_width="152dp"
+        android:layout_height="253dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myTasks" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
