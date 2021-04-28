@@ -59,6 +59,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(goToAllTasks);
             }
         });
+        
+        Button recycle = findViewById(R.id.recyclerView);
+
+        recycle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, allTasks.class );
+                startActivity(intent);
+            }
+        });
+
 
         Button userProfile = findViewById(R.id.userProfileButton);
         userProfile.setOnClickListener(view ->{
