@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 public class TaskList extends AppCompatActivity implements TaskListAdapter.ClickOnTaskAble{
-
+TaskListAdapter taskListAdapter = new TaskListAdapter(this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,12 +16,13 @@ public class TaskList extends AppCompatActivity implements TaskListAdapter.Click
 //        this creates our recyclerview
         RecyclerView recyclerView = findViewById(R.id.taskListRecycle);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new TaskListAdapter (this));
+        recyclerView.setAdapter(taskListAdapter);
 
     }
 
     @Override
     public void handleClickOnTask(TaskListAdapter.TaskViewHolder taskViewHolder) {
 //        do something here
+
     }
 }

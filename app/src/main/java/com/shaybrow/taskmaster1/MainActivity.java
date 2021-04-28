@@ -137,5 +137,10 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
     @Override
     public void handleClickOnTask(TaskListAdapter.TaskViewHolder taskViewHolder) {
         Toast.makeText(this, taskViewHolder.design, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, TaskDetails.class);
+
+        intent.putExtra("taskTitle", taskViewHolder.design);
+        startActivity(intent);
+
     }
 }

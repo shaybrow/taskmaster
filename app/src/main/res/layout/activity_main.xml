@@ -17,7 +17,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintVertical_bias="0.077" />
 
     <Button
         android:id="@+id/addTask"
@@ -56,12 +56,12 @@
         android:id="@+id/usernameDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="368dp"
+        android:layout_marginTop="24dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintEnd_toEndOf="@+id/userProfileButton"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="@+id/myTasks"
-        app:layout_constraintTop_toBottomOf="@+id/userProfileButton" />
+        app:layout_constraintTop_toBottomOf="@+id/addTask" />
 
     <Button
         android:id="@+id/getAJob"

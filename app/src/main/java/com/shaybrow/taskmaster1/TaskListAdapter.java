@@ -9,6 +9,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shaybrow.taskmaster1.models.Task;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     public static List<String> tasks;
+    public static List<Task> tasksReal;
+    static {
+        tasksReal.add(new Task("Do something"));
+        tasksReal.add(new Task("Do another thing"));
+        tasksReal.add(new Task("Do more things"));
+    }
 
     static {
         tasks =new ArrayList<>();

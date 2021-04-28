@@ -4,9 +4,17 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
-![](screenshots/task-details.PNG)
+![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 4.28.21
+
+- added hard coded recyclerview to homescreen displaying tasks and links to task details page
+
+- added task model with title, body and state with methods for changing state
+
+- added return home button to confirm update of username works correctly
 
 ### 4.27.21
 
