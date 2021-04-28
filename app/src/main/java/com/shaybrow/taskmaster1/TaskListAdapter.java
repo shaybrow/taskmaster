@@ -1,5 +1,6 @@
 package com.shaybrow.taskmaster1;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +12,44 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.login.LoginException;
+
 // Make sure type of viewholder conforms to This recyclerciew's viewholder as listed at the bottom
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
 
-    static List<String> tasks;
+//  save the a
+
+
+    public ClickOnTaskAble clickOnTaskAble;
+    public TaskListAdapter (ClickOnTaskAble clickOnTaskAble){
+        this.clickOnTaskAble = clickOnTaskAble;
+    }
+
+    public static List<String> tasks;
 
     static {
         tasks =new ArrayList<>();
         tasks.add("Sleep");
         tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+        tasks.add("Sleep");
+        tasks.add("potato");
+
 
     }
 
@@ -42,10 +72,16 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 //  changes the data when fragment cycles
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-    String thisTask = tasks.get(position);
-    holder.design = thisTask;
+        String thisTask = tasks.get(position);
+//      this will be needed for clicking
+        holder.design = thisTask;
         ((TextView)holder.itemView.findViewById(R.id.fragTask)).setText(thisTask);
 
+        holder.itemView.setOnClickListener( v ->{
+            Log.i("onClick", "Someone clicked on a task");
+            clickOnTaskAble.handleClickOnTask(holder);
+
+        });
     }
 
 //    how many should be built
@@ -54,11 +90,14 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         return tasks.size();
     }
     public static class TaskViewHolder extends RecyclerView.ViewHolder{
-        String design;
+        public String design;
         public TaskViewHolder (@NonNull View itemView){
             super(itemView);
 
 
         }
+    }
+    public interface ClickOnTaskAble {
+        public void handleClickOnTask (TaskViewHolder taskViewHolder);
     }
 }

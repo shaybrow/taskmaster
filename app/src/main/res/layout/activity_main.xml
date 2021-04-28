@@ -41,18 +41,6 @@
         app:layout_constraintTop_toTopOf="@+id/addTask"
         app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="192dp"
-        android:layout_height="185dp"
-        app:layout_constraintBottom_toTopOf="@+id/addTask"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myTasks"
-        app:srcCompat="@android:drawable/btn_dialog"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <Button
         android:id="@+id/userProfileButton"
         android:layout_width="wrap_content"
@@ -112,9 +100,20 @@
         android:id="@+id/recyclerView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="132dp"
         android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintEnd_toStartOf="@+id/userProfileButton"
+        app:layout_constraintTop_toBottomOf="@+id/myTasks" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskListView2"
+        android:layout_width="152dp"
+        android:layout_height="253dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myTasks" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
