@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.shaybrow.taskmaster1.models.Task;
 
@@ -20,45 +21,12 @@ import javax.security.auth.login.LoginException;
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
 
 //  save the a
-
+public static List<Task> taskList;
 
     public ClickOnTaskAble clickOnTaskAble;
-    public TaskListAdapter (ClickOnTaskAble clickOnTaskAble){
+    public TaskListAdapter (ClickOnTaskAble clickOnTaskAble, List<Task> taskList){
         this.clickOnTaskAble = clickOnTaskAble;
-    }
-
-    public static List<String> tasks;
-    public static List<Task> tasksReal;
-    static {
-        tasksReal.add(new Task("Do something"));
-        tasksReal.add(new Task("Do another thing"));
-        tasksReal.add(new Task("Do more things"));
-    }
-
-    static {
-        tasks =new ArrayList<>();
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-        tasks.add("Sleep");
-        tasks.add("potato");
-
-
+        this.taskList = taskList;
     }
 
     //    build and bind the data
@@ -74,16 +42,26 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 //        pair the fragment with the data
 //        attach frag to viewholder
         TaskViewHolder taskViewHolder = new TaskViewHolder(fragment);
+
         return taskViewHolder;
     }
+//
+    public static class TaskViewHolder extends RecyclerView.ViewHolder{
+        //        public Task design = taskList.get();
+        public Task task;
 
+        public TaskViewHolder (@NonNull View itemView){
+            super(itemView);
+
+
+        }
+    }
 //  changes the data when fragment cycles
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        String thisTask = tasks.get(position);
-//      this will be needed for clicking
-        holder.design = thisTask;
-        ((TextView)holder.itemView.findViewById(R.id.fragTask)).setText(thisTask);
+
+        ((TextView)holder.itemView.findViewById(R.id.fragTask)).setText(taskList.get(position).getTitle());
+        holder.task = taskList.get(position);
 
         holder.itemView.setOnClickListener( v ->{
             Log.i("onClick", "Someone clicked on a task");
@@ -95,16 +73,10 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 //    how many should be built
     @Override
     public int getItemCount() {
-        return tasks.size();
+        return taskList.size();
     }
-    public static class TaskViewHolder extends RecyclerView.ViewHolder{
-        public String design;
-        public TaskViewHolder (@NonNull View itemView){
-            super(itemView);
 
 
-        }
-    }
     public interface ClickOnTaskAble {
         public void handleClickOnTask (TaskViewHolder taskViewHolder);
     }

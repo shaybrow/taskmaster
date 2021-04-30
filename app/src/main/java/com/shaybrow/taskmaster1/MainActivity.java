@@ -4,6 +4,7 @@ package com.shaybrow.taskmaster1;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,11 +17,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.shaybrow.taskmaster1.models.Task;
 
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements TaskListAdapter.ClickOnTaskAble {
     public static  String TAG = "shayapp.main";
+    TaskDatabase taskDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,12 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         setContentView(R.layout.activity_main);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
 //        SharedPreferences.Editor prefEditor = pref.edit();
+            taskDatabase = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "shaybrow_task_db")
+
+                    .allowMainThreadQueries()
+                    .build();
+        //                    allowing main thread queries overrides main thread protection for this expensive operation
+
 
         String username = pref.getString("username", null);
         if (username != null) ((TextView)findViewById(R.id.usernameDisplay)).setText(String.format(Locale.ENGLISH, username + "'s tasks"));
@@ -68,7 +78,8 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 //        for creating a layout view on a different page
         RecyclerView rv = findViewById(R.id.taskListView2);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new TaskListAdapter(this));
+        List<Task> tasks = taskDatabase.taskDao().findAll();
+        rv.setAdapter(new TaskListAdapter(this, tasks));
 
 
         Button recycle = findViewById(R.id.recyclerView);
@@ -136,10 +147,14 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 
     @Override
     public void handleClickOnTask(TaskListAdapter.TaskViewHolder taskViewHolder) {
-        Toast.makeText(this, taskViewHolder.design, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(MainActivity.this, TaskDetails.class);
+//        Toast.makeText(this, taskViewHolder.design, Toast.LENGTH_SHORT).show();
+        Task task = taskViewHolder.task;
 
-        intent.putExtra("taskTitle", taskViewHolder.design);
+        Intent intent = new Intent(MainActivity.this, TaskDetails.class);
+        Log.i("something", " " + taskViewHolder);
+        intent.putExtra("taskTitle", taskViewHolder.task.getTitle());
+        intent.putExtra("taskBody", taskViewHolder.task.getBody());
+        intent.putExtra("taskState", taskViewHolder.task.getState());
         startActivity(intent);
 
     }

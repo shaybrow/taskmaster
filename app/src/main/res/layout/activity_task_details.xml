@@ -18,11 +18,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/importTaskBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="188dp"
         android:text="Lorem Ipsum"
         app:layout_constraintStart_toStartOf="@+id/importTaskTitle"
         app:layout_constraintTop_toBottomOf="@+id/importTaskTitle" />
+
+    <TextView
+        android:id="@+id/importTaskState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/importTaskBody"
+        app:layout_constraintStart_toEndOf="@+id/importTaskBody"
+        app:layout_constraintTop_toTopOf="@+id/importTaskBody"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
