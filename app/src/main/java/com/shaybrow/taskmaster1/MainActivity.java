@@ -82,15 +82,15 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         rv.setAdapter(new TaskListAdapter(this, tasks));
 
 
-        Button recycle = findViewById(R.id.recyclerView);
-
-        recycle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, allTasks.class );
-                startActivity(intent);
-            }
-        });
+//        Button recycle = findViewById(R.id.recyclerView);
+//
+//        recycle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainActivity.this, allTasks.class );
+//                startActivity(intent);
+//            }
+//        });
 
 
         Button userProfile = findViewById(R.id.userProfileButton);

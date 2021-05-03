@@ -23,7 +23,7 @@
         android:id="@+id/addTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="240dp"
         android:text="Add Task"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.161"
@@ -96,23 +96,12 @@
         app:layout_constraintTop_toTopOf="@+id/mealPrep"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/recyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="132dp"
-        android:text="Button"
-        app:layout_constraintEnd_toStartOf="@+id/userProfileButton"
-        app:layout_constraintTop_toBottomOf="@+id/myTasks" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskListView2"
-        android:layout_width="152dp"
-        android:layout_height="253dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="191dp"
+        android:layout_height="214dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myTasks" />
 
