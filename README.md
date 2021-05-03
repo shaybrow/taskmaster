@@ -4,9 +4,17 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
-![](screenshots/homescreen429.PNG)
+![](screenshots/homescreen503.PNG)
 
 ## Changelog
+
+### 5.03.21
+
+- test main ui functionality
+
+- test update username
+
+- test task details title transfer
 
 ### 4.29.21
 
