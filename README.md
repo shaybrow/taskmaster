@@ -4,9 +4,18 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
-![](screenshots/homescreen428.PNG)
+![](screenshots/homescreen429.PNG)
 
 ## Changelog
+
+### 4.29.21
+
+- add task saves to local db
+
+- home page recycle view displays all Task entities from db
+
+- tapping on task takes to task details page with info from db
+
 
 ### 4.28.21
 

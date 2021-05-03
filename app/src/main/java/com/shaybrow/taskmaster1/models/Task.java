@@ -1,9 +1,15 @@
 package com.shaybrow.taskmaster1.models;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Task {
+    @PrimaryKey(autoGenerate = true)
+    public long id;
     String title;
     String body;
-    String state;
+    public String state;
 
     public Task(String title, String body) {
         this.title = title;
