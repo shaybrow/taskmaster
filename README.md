@@ -4,9 +4,27 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
+![](screenshots/homescreen504.PNG)
+
 ![](screenshots/homescreen503.PNG)
 
+![](screenshots/homescreen429.PNG)
+
+![](screenshots/homescreen428.PNG)
+
 ## Changelog
+
+### 5.04.21
+
+- amplify initialized
+
+- taskschema created and pushed
+
+- adapt addTask activity to dynamodb
+
+- adapt homescreen recyclerView to display dynamodb tasks
+
+- adapt adapter to provided build requirements for dynamodb and graphql
 
 ### 5.03.21
 
