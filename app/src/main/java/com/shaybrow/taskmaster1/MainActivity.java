@@ -111,11 +111,10 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         String team = pref.getString("team", null);
         if (team != null){
 
-            Log.i(TAG, "onCreate: "+ team);
         Amplify.API.query(
                 ModelQuery.list(Team.class, Team.NAME.contains(team)),
                 response -> {
-                    Log.i(TAG, "onCreate: " + response.toString());
+
                     for (Team team1 : response.getData()){
                         Log.i(TAG, "onCreate: "+ team1);
                         teamList.add(team1);
