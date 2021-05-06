@@ -4,6 +4,8 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
+![](screenshots/homescreen506.PNG)
+
 ![](screenshots/homescreen505.PNG)
 
 ![](screenshots/homescreen504.PNG)
@@ -15,6 +17,20 @@ An app designed to create and track tasks and mark their completion. Still in de
 ![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 5.06.21
+
+- homepage shows tasks assigned to user's team or all tasks if they haven't selected a team
+
+- add task properly assigns tasks to the designated team
+
+- deployed first release to google play
+
+- populated app description and images
+
+- completed rating questionaire
+
+- invited testers
 
 ### 5.05.21
 
