@@ -21,9 +21,11 @@ import android.widget.Toast;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -68,7 +70,16 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         } catch (AmplifyException error) {
             Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
-
+//        Amplify.API.query(
+//                ModelQuery.list(Team.class, Team.NAME.contains(team)),
+//                response -> {
+//                    for (Team team1 : response.getData()){
+//                        teams.add(team1);
+//                    }
+//
+//                },
+//                response -> {}
+//        );
         Amplify.API.query(
                 ModelQuery.list(Task.class),
                 response -> {
@@ -79,6 +90,9 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
                 },
                 response -> {}
         );
+
+
+
 //          til you need both responses otherwise you'll get silly errors
 
 
