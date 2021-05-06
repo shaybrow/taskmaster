@@ -10,10 +10,10 @@
         android:id="@+id/importTaskTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="92dp"
         android:text="@string/replacedtitle"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,7 +21,8 @@
         android:id="@+id/importTaskBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="188dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="112dp"
         android:text="@string/lorem_ipsum"
         app:layout_constraintStart_toStartOf="@+id/importTaskTitle"
         app:layout_constraintTop_toBottomOf="@+id/importTaskTitle" />
@@ -30,10 +31,8 @@
         android:id="@+id/importTaskState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginTop="124dp"
         android:text="@string/textview"
-        app:layout_constraintBottom_toBottomOf="@+id/importTaskBody"
-        app:layout_constraintStart_toEndOf="@+id/importTaskBody"
-        app:layout_constraintTop_toTopOf="@+id/importTaskBody"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="@+id/importTaskTitle"
+        app:layout_constraintTop_toBottomOf="@+id/importTaskBody" />
 </androidx.constraintlayout.widget.ConstraintLayout>

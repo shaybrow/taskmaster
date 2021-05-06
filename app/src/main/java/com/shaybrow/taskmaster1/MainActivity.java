@@ -258,9 +258,9 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 
         Intent intent = new Intent(MainActivity.this, TaskDetails.class);
 //        Log.i("something", " " + taskViewHolder);
-//        intent.putExtra("taskTitle", taskViewHolder.task.getTitle());
-//        intent.putExtra("taskBody", taskViewHolder.task.getBody());
-//        intent.putExtra("taskState", taskViewHolder.task.getState());
+        intent.putExtra("taskTitle", taskViewHolder.task.getTitle());
+        intent.putExtra("taskBody", taskViewHolder.task.getBody());
+        intent.putExtra("taskState", taskViewHolder.task.getState());
         startActivity(intent);
 
     }
