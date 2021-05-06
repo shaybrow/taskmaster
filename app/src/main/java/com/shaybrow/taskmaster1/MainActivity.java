@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         try {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
-//            Amplify.addPlugin();
+
 
             Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException error) {

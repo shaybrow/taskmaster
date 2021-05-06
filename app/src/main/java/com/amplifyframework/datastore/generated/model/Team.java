@@ -67,10 +67,10 @@ public final class Team implements Model {
   @Override
    public String toString() {
     return new StringBuilder()
-      .append("Team {")
-      .append("id=" + String.valueOf(getId()) + ", ")
-      .append("name=" + String.valueOf(getName()))
-      .append("}")
+      .append("Team: ")
+//      .append("id=" + String.valueOf(getId()) + ", ")
+      .append(String.valueOf(getName()))
+//      .append("}")
       .toString();
   }
   

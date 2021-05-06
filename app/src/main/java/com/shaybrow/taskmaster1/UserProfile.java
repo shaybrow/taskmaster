@@ -29,8 +29,8 @@ import java.util.List;
 
 public class UserProfile extends AppCompatActivity {
     public static  String TAG = "shayapp.user";
-//    public List<String> teamList = new ArrayList<>();
-//    Handler userHandler;
+    public List<Team> teamList = new ArrayList<>();
+    Handler userHandler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +41,37 @@ public class UserProfile extends AppCompatActivity {
         String username = pref.getString("username", "Guest");
         ((TextView)findViewById(R.id.usernameInput)).setText(pref.getString("username",username));
         ((TextView) findViewById(R.id.currentTeam)).setText("Current Team: " + pref.getString("team", "none"));
+
         Spinner spinner = findViewById(R.id.teamSpinner);
-        String[] items = new String []{"The Powder Puff People", "Guardians of the Garage", "The Power Ragers"};
+//        String[] items = new String []{"The Powder Puff People", "Guardians of the Garage", "The Power Ragers"};
+//        ;
+
+        userHandler = new Handler(this.getMainLooper()){
+            @Override
+            public void handleMessage(@NonNull Message message) {
+                super.handleMessage(message);
+                if (message.what == 6){
+                    ArrayAdapter<Team> adapter = new ArrayAdapter<>(UserProfile.this, android.R.layout.simple_spinner_dropdown_item, teamList);
+                    adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                    spinner.setAdapter(adapter);
+
+                }
+            }
+        };
+        Amplify.API.query(ModelQuery.list(Team.class),
+                r -> {
+                    for (Team t : r.getData()){
+                        teamList.add(t);
+                    }
+                    userHandler.sendEmptyMessage(6);
+                },
+                r->{});
+
 //        for (int i = 0; i < teamList.size(); i++) {
 //            items[i]= teamList.get(i);
 //            Log.i(TAG, "onCreate: ");
 //        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        spinner.setAdapter(adapter);
+
 
         findViewById(R.id.usernameSubmit).setOnClickListener(view ->{
             String username1 = ((TextView)findViewById(R.id.usernameInput)).getText().toString();
@@ -57,6 +80,7 @@ public class UserProfile extends AppCompatActivity {
 
             String team = spinner.getSelectedItem().toString();
             ((TextView) findViewById(R.id.currentTeam)).setText("Current Team: " + team);
+            Team t =  (Team)spinner.getSelectedItem();
             prefEditor.putString("team", team);
 
             prefEditor.apply();
@@ -78,15 +102,7 @@ public class UserProfile extends AppCompatActivity {
         });
 
 
-//        userHandler = new Handler(this.getMainLooper()){
-//            @Override
-//            public void handleMessage(@NonNull Message message) {
-//                super.handleMessage(message);
-//                if (message.what == 6){
-//                    adapter.notifyDataSetChanged();
-//                }
-//            }
-//        };
+
 //        Amplify.API.query(
 //                ModelQuery.list(Team.class),
 //                response -> {
