@@ -4,6 +4,8 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
+![](screenshots/homescreen505.PNG)
+
 ![](screenshots/homescreen504.PNG)
 
 ![](screenshots/homescreen503.PNG)
@@ -13,6 +15,14 @@ An app designed to create and track tasks and mark their completion. Still in de
 ![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 5.05.21
+
+- tasks now belong to teams
+
+- user can select which team they are on and preference is saved
+
+- user can select which team a task is for
 
 ### 5.04.21
 

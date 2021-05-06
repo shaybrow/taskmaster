@@ -50,6 +50,7 @@ public class addTask extends AppCompatActivity {
 
         button.setOnClickListener( view -> {
             String team = spinner.getSelectedItem().toString();
+            Team team1 = Team.builder().name("The Powder Puff People").build();
 
 
 
@@ -57,7 +58,7 @@ public class addTask extends AppCompatActivity {
             String body = ((EditText)findViewById(R.id.importTaskBody)).getText().toString();
             Task task = Task.builder()
             .title(title)
-            .body(body)
+            .body(body).team(team1)
                     .build();
 
 //            taskDatabase.taskDao().insert(task);
