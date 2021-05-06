@@ -34,8 +34,10 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements TaskListAdapter.ClickOnTaskAble {
     public static  String TAG = "shayapp.main";
+    private static final int QUERYRESULT = 7;
 //    TaskDatabase taskDatabase;
     public List<com.amplifyframework.datastore.generated.model.Task>tasks = new ArrayList<>();
+    public List<Team> teamList = new ArrayList<>();
     Handler mainHandler;
 
     @Override
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         //        for creating a layout view on a different page
         RecyclerView rv = findViewById(R.id.taskListView2);
         rv.setLayoutManager(new LinearLayoutManager(this));
@@ -58,17 +61,41 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
                 if (message.what == 7){
                     rv.getAdapter().notifyDataSetChanged();
                 }
+                if (message.what == 8){
+                    Amplify.API.query(
+                ModelQuery.list(Task.class, Task.TEAM.contains(teamList.get(0).getId())),
+                response -> {
+          for (Task task : response.getData()){
+              tasks.add(task);
+          }
+          mainHandler.sendEmptyMessage(7);
+                },
+                response -> {}
+        );
+
+                }
             }
         };
+
+//        Amplify.API.query(
+//                ModelQuery.list(Task.class, Task.TEAM.contains(teamList.get(0).getId())),
+//                response -> {
+//          for (Task task : response.getData()){
+//              tasks.add(task);
+//          }
+//          mainHandler.sendEmptyMessage(7);
+//                },
+//                response -> {}
+//        );
 
         try {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.configure(getApplicationContext());
 
 
-            Log.i("MyAmplifyApp", "Initialized Amplify");
+//            Log.i("MyAmplifyApp", "Initialized Amplify");
         } catch (AmplifyException error) {
-            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+//            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
         }
 //        Amplify.API.query(
 //                ModelQuery.list(Team.class, Team.NAME.contains(team)),
@@ -80,23 +107,42 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 //                },
 //                response -> {}
 //        );
+//
+        String team = pref.getString("team", null);
+        if (team != null){
+
+            Log.i(TAG, "onCreate: "+ team);
         Amplify.API.query(
-                ModelQuery.list(Task.class),
+                ModelQuery.list(Team.class, Team.NAME.contains(team)),
                 response -> {
-          for (Task task : response.getData()){
-              tasks.add(task);
-          }
-          mainHandler.sendEmptyMessage(7);
+                    Log.i(TAG, "onCreate: " + response.toString());
+                    for (Team team1 : response.getData()){
+                        Log.i(TAG, "onCreate: "+ team1);
+                        teamList.add(team1);
+                    }
+                    mainHandler.sendEmptyMessage(8);
                 },
                 response -> {}
         );
 
+        } else {
+            Amplify.API.query(
+                    ModelQuery.list(Task.class),
+                    response -> {
+                        for (Task task : response.getData()){
+                            tasks.add(task);
+                        }
+                        mainHandler.sendEmptyMessage(7);
+                    },
+                    response -> {}
+            );
+        }
 
 
 //          til you need both responses otherwise you'll get silly errors
 
 
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+
 
 //            taskDatabase = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "shaybrow_task_db")
 //
@@ -120,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         potatoAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "This is how we long in 2021");
+//                Log.i(TAG, "This is how we long in 2021");
                 Intent goToAddTasks = new Intent(MainActivity.this, addTask.class);
 //                where we're coming from, where we are going
                 startActivity(goToAddTasks);

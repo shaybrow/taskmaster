@@ -81,7 +81,7 @@ public class UserProfile extends AppCompatActivity {
             String team = spinner.getSelectedItem().toString();
             ((TextView) findViewById(R.id.currentTeam)).setText("Current Team: " + team);
             Team t =  (Team)spinner.getSelectedItem();
-            prefEditor.putString("team", team);
+            prefEditor.putString("team", t.getName());
 
             prefEditor.apply();
             ((TextView) findViewById(R.id.usernameInput)).setText(username1);
