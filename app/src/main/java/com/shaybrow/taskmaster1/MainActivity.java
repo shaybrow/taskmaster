@@ -1,6 +1,7 @@
 package com.shaybrow.taskmaster1;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,6 +10,8 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
@@ -16,26 +19,89 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.api.aws.AWSApiPlugin;
+import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Task;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.google.android.material.snackbar.Snackbar;
-import com.shaybrow.taskmaster1.models.Task;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements TaskListAdapter.ClickOnTaskAble {
     public static  String TAG = "shayapp.main";
-    TaskDatabase taskDatabase;
+//    TaskDatabase taskDatabase;
+    public List<com.amplifyframework.datastore.generated.model.Task>tasks = new ArrayList<>();
+    Handler mainHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-//        SharedPreferences.Editor prefEditor = pref.edit();
-            taskDatabase = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "shaybrow_task_db")
 
-                    .allowMainThreadQueries()
-                    .build();
+        //        for creating a layout view on a different page
+        RecyclerView rv = findViewById(R.id.taskListView2);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+//        List<Task> tasks = taskDatabase.taskDao().findAll();
+        rv.setAdapter(new TaskListAdapter(this, tasks));
+//      to do connect aws db
+
+
+        mainHandler = new Handler(this.getMainLooper()){
+            @Override
+            public void handleMessage(@NonNull Message message) {
+                super.handleMessage(message);
+                if (message.what == 7){
+                    rv.getAdapter().notifyDataSetChanged();
+                }
+            }
+        };
+
+        try {
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.configure(getApplicationContext());
+//            Amplify.addPlugin();
+
+            Log.i("MyAmplifyApp", "Initialized Amplify");
+        } catch (AmplifyException error) {
+            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
+        }
+//        Amplify.API.query(
+//                ModelQuery.list(Team.class, Team.NAME.contains(team)),
+//                response -> {
+//                    for (Team team1 : response.getData()){
+//                        teams.add(team1);
+//                    }
+//
+//                },
+//                response -> {}
+//        );
+        Amplify.API.query(
+                ModelQuery.list(Task.class),
+                response -> {
+          for (Task task : response.getData()){
+              tasks.add(task);
+          }
+          mainHandler.sendEmptyMessage(7);
+                },
+                response -> {}
+        );
+
+
+
+//          til you need both responses otherwise you'll get silly errors
+
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+
+//            taskDatabase = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "shaybrow_task_db")
+//
+//                    .allowMainThreadQueries()
+//                    .build();
         //                    allowing main thread queries overrides main thread protection for this expensive operation
 
 
@@ -75,11 +141,6 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             }
         });
 
-//        for creating a layout view on a different page
-        RecyclerView rv = findViewById(R.id.taskListView2);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-        List<Task> tasks = taskDatabase.taskDao().findAll();
-        rv.setAdapter(new TaskListAdapter(this, tasks));
 
 
 //        Button recycle = findViewById(R.id.recyclerView);
@@ -151,10 +212,10 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         Task task = taskViewHolder.task;
 
         Intent intent = new Intent(MainActivity.this, TaskDetails.class);
-        Log.i("something", " " + taskViewHolder);
-        intent.putExtra("taskTitle", taskViewHolder.task.getTitle());
-        intent.putExtra("taskBody", taskViewHolder.task.getBody());
-        intent.putExtra("taskState", taskViewHolder.task.getState());
+//        Log.i("something", " " + taskViewHolder);
+//        intent.putExtra("taskTitle", taskViewHolder.task.getTitle());
+//        intent.putExtra("taskBody", taskViewHolder.task.getBody());
+//        intent.putExtra("taskState", taskViewHolder.task.getState());
         startActivity(intent);
 
     }

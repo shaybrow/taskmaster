@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="72dp"
-        android:text="User Settings"
+        android:text="@string/user_settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,18 +23,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/userSettingsH1"
-        app:layout_constraintTop_toBottomOf="@+id/userSettingsH1" />
+        app:layout_constraintTop_toBottomOf="@+id/userSettingsH1"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/usernameSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        android:text="Update Username"
+        android:layout_marginTop="160dp"
+        android:text="@string/update_username"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameInput" />
 
@@ -42,9 +44,27 @@
         android:id="@+id/returnHome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
-        android:text="Go Home"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/go_home"
         app:layout_constraintStart_toStartOf="@+id/usernameInput"
         app:layout_constraintTop_toBottomOf="@+id/usernameSubmit" />
+
+    <Spinner
+        android:id="@+id/teamSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/usernameSubmit"
+        app:layout_constraintTop_toBottomOf="@+id/usernameInput"
+        tools:layout_editor_absoluteX="3dp" />
+
+    <TextView
+        android:id="@+id/currentTeam"
+        android:layout_width="257dp"
+        android:layout_height="40dp"
+        android:text="Current Team:"
+        app:layout_constraintBottom_toTopOf="@+id/teamSpinner"
+        app:layout_constraintStart_toStartOf="@+id/usernameInput"
+        app:layout_constraintTop_toBottomOf="@+id/usernameInput" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

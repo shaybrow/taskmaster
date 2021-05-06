@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
-import com.shaybrow.taskmaster1.models.Task;
+import com.amplifyframework.datastore.generated.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +21,10 @@ import javax.security.auth.login.LoginException;
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
 
 //  save the a
-public static List<Task> taskList;
+public static List<com.amplifyframework.datastore.generated.model.Task> taskList;
 
     public ClickOnTaskAble clickOnTaskAble;
-    public TaskListAdapter (ClickOnTaskAble clickOnTaskAble, List<Task> taskList){
+    public TaskListAdapter (ClickOnTaskAble clickOnTaskAble, List<com.amplifyframework.datastore.generated.model.Task> taskList){
         this.clickOnTaskAble = clickOnTaskAble;
         this.taskList = taskList;
     }
