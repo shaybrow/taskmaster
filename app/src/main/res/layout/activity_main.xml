@@ -63,39 +63,6 @@
         app:layout_constraintStart_toStartOf="@+id/myTasks"
         app:layout_constraintTop_toBottomOf="@+id/addTask" />
 
-    <Button
-        android:id="@+id/getAJob"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Get A Job"
-        app:layout_constraintBottom_toBottomOf="@+id/mealPrep"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mealPrep"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/mealPrep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="Meal Prep"
-        app:layout_constraintEnd_toStartOf="@+id/sleep"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toEndOf="@+id/getAJob"
-        app:layout_constraintTop_toBottomOf="@+id/addTask" />
-
-    <Button
-        android:id="@+id/sleep"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Sleep"
-        app:layout_constraintBottom_toBottomOf="@+id/mealPrep"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/mealPrep"
-        app:layout_constraintVertical_bias="0.0" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskListView2"
         android:layout_width="191dp"
@@ -104,5 +71,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myTasks" />
+
+    <Button
+        android:id="@+id/signupButtonLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Signup"
+        app:layout_constraintStart_toStartOf="@+id/addTask"
+        app:layout_constraintTop_toBottomOf="@+id/addTask" />
+
+    <TextView
+        android:id="@+id/userEmailDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonLoginLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Login"
+        app:layout_constraintBottom_toBottomOf="@+id/signupButtonLink"
+        app:layout_constraintEnd_toEndOf="@+id/allTasks"
+        app:layout_constraintTop_toBottomOf="@+id/allTasks"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

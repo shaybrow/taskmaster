@@ -4,40 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Signup">
-
-    <Button
-        android:id="@+id/signupButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:layout_marginEnd="4dp"
-        android:text="Signup"
-        app:layout_constraintEnd_toEndOf="@+id/signupPassword"
-        app:layout_constraintTop_toBottomOf="@+id/signupPassword" />
+    tools:context="com.amplifyframework.datastore.generated.model.LoginTaskUser">
 
     <EditText
-        android:id="@+id/signupEmail"
+        android:id="@+id/loginEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="88dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/signupPassword"
+        android:id="@+id/loginPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/signupEmail"
-        app:layout_constraintStart_toStartOf="@+id/signupEmail"
-        app:layout_constraintTop_toBottomOf="@+id/signupEmail" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
+
+    <Button
+        android:id="@+id/buttonLoginSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:text="Login"
+        app:layout_constraintEnd_toEndOf="@+id/loginPassword"
+        app:layout_constraintTop_toBottomOf="@+id/loginPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>

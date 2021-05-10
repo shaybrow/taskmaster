@@ -30,8 +30,10 @@ String TAG = "shaybrow.signup";
                             .build(), r-> {
                         Intent i = new Intent(Signup.this, SignupConfirmation.class);
                         i.putExtra("email", email);
-                        i.putExtra("password", pass);
+//                        i.putExtra("password", pass);
                         Log.i(TAG, "onCreate: "+ r);
+                        startActivity(i);
+
 
                     },
                     r-> {

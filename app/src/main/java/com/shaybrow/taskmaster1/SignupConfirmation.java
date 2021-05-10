@@ -2,9 +2,11 @@ package com.shaybrow.taskmaster1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.amplifyframework.core.Amplify;
 
@@ -21,9 +23,13 @@ public class SignupConfirmation extends AppCompatActivity {
             String confirmationCode = ((EditText) findViewById(R.id.confirmationNumber)).getText().toString();
             Amplify.Auth.confirmSignUp(email,
                     confirmationCode,
-                    r ->{},
-                    r ->{}
+                    r ->{
+                    startActivity(new Intent(SignupConfirmation.this, MainActivity.class));
+                    },
+                    r ->{
+                        Toast.makeText(SignupConfirmation.this, "confirmation code failed", Toast.LENGTH_LONG);
+                    }
                     );
-        }
+        });
     }
 }

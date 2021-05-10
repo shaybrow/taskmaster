@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,20 +16,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
-import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
-import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.LoginTaskUser;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -192,48 +187,30 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             startActivity(goToUserProfile);
         });
 
-        Button getAJob = findViewById(R.id.getAJob);
-        getAJob.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goToGetAJob = new Intent(MainActivity.this, TaskDetails.class);
-                String title = ((Button) findViewById(R.id.getAJob)).getText().toString();
-                goToGetAJob.putExtra("taskTitle", title);
-                startActivity(goToGetAJob);
-
-
-            }
+        Button signup = findViewById(R.id.signupButtonLink);
+        signup.setOnClickListener(view -> {
+            Intent goToSignup = new Intent(this, Signup.class);
+            startActivity(goToSignup);
         });
-        Button mealPrep = findViewById(R.id.mealPrep);
-        mealPrep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goMealPrep = new Intent(MainActivity.this, TaskDetails.class);
-                String title = ((Button) findViewById(R.id.mealPrep)).getText().toString();
-                goMealPrep.putExtra("taskTitle", title);
-                startActivity(goMealPrep);
-
-
-            }
+        Button login = findViewById(R.id.buttonLoginLink);
+        login.setOnClickListener(view -> {
+            Intent goToLogin = new Intent(this, LoginTaskUser.class);
+            startActivity(goToLogin);
         });
-        Button sleep = findViewById(R.id.sleep);
-        sleep.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent goSleep = new Intent(MainActivity.this, TaskDetails.class);
-                String title = ((Button) findViewById(R.id.sleep)).getText().toString();
-                goSleep.putExtra("taskTitle", title);
-                startActivity(goSleep);
 
-
-            }
-        });
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        AuthUser prince = Amplify.Auth.getCurrentUser();
+        if (prince != null){
+            String email = prince.getUsername();
+            ((TextView) findViewById(R.id.userEmailDisplay)).setText(email);
+
+        }
+
 
     }
 
