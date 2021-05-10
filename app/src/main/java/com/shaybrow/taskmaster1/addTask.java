@@ -32,7 +32,7 @@ public class addTask extends AppCompatActivity {
 
     static List<Team> teamList = new ArrayList<>();
     Handler addHandler;
-    //    int count =0;
+
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +63,7 @@ public class addTask extends AppCompatActivity {
 
 
 //        taskDatabase = Room.databaseBuilder(getApplicationContext(),TaskDatabase.class, "shaybrow_task_db" ).allowMainThreadQueries().build();
-//        popUp = new PopupWindow(this);
-//        TextView textView = new TextView(this);
+
         Button button = findViewById(R.id.submitTask);
 
         button.setOnClickListener( view -> {
@@ -79,12 +78,10 @@ public class addTask extends AppCompatActivity {
             .title(title)
             .body(body).team(t)
                     .build();
+            
 
 //            taskDatabase.taskDao().insert(task);
 
-//            count ++ ;
-//            String title = ((EditText)findViewById(R.id.taskTitle)).getText().toString();
-//            String body = ((EditText)findViewById(R.id.taskBody)).getText().toString();
             ((TextView)findViewById(R.id.submitted)).setVisibility(View.VISIBLE);
 //            ((TextView) findViewById(R.id.taskTotal)).setText(String.format(Locale.ENGLISH, "Total Tasks" + count));
             Amplify.API.mutate(ModelMutation.create(task),
@@ -94,10 +91,6 @@ public class addTask extends AppCompatActivity {
 //                        Log.i(TAG, "onCreate: miss");
                     });
 
-//            Intent intent = new Intent(addTask.this, allTasks.class);
-//            intent.putExtra("taskTitle", title);
-//            intent.putExtra("taskBody", body);
-//            startActivity(intent);
 
 
         });

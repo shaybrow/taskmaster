@@ -23,6 +23,10 @@ import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
+import com.amplifyframework.auth.AuthUserAttributeKey;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -33,10 +37,10 @@ import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements TaskListAdapter.ClickOnTaskAble {
-    public static  String TAG = "shayapp.main";
     private static final int QUERYRESULT = 7;
-//    TaskDatabase taskDatabase;
-    public List<com.amplifyframework.datastore.generated.model.Task>tasks = new ArrayList<>();
+    public static String TAG = "shayapp.main";
+    //    TaskDatabase taskDatabase;
+    public List<com.amplifyframework.datastore.generated.model.Task> tasks = new ArrayList<>();
     public List<Team> teamList = new ArrayList<>();
     Handler mainHandler;
 
@@ -44,6 +48,28 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        try {
+
+            Amplify.addPlugin(new AWSApiPlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+            Amplify.configure(getApplicationContext());
+
+
+        } catch (AmplifyException error) {
+
+        }
+
+
+
+//        Amplify.Auth.confirmSignUp(
+//              "shay.brown.13@gmail.com"  , "dsfsdf"
+//        );
+//        AuthUser authUser = Amplify.Auth.getCurrentUser();
+
+//        signup
+//        verification
+//        login
+
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         //        for creating a layout view on a different page
@@ -54,93 +80,65 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 //      to do connect aws db
 
 
-        mainHandler = new Handler(this.getMainLooper()){
+        mainHandler = new Handler(this.getMainLooper()) {
             @Override
             public void handleMessage(@NonNull Message message) {
                 super.handleMessage(message);
-                if (message.what == 7){
+                if (message.what == 7) {
                     rv.getAdapter().notifyDataSetChanged();
                 }
-                if (message.what == 8){
+                if (message.what == 8) {
                     Amplify.API.query(
-                ModelQuery.list(Task.class, Task.TEAM.contains(teamList.get(0).getId())),
-                response -> {
-          for (Task task : response.getData()){
-              tasks.add(task);
-          }
-          mainHandler.sendEmptyMessage(7);
-                },
-                response -> {}
-        );
+                            ModelQuery.list(Task.class, Task.TEAM.contains(teamList.get(0).getId())),
+                            response -> {
+                                for (Task task : response.getData()) {
+                                    tasks.add(task);
+                                }
+                                mainHandler.sendEmptyMessage(7);
+                            },
+                            response -> {
+                            }
+                    );
 
                 }
             }
         };
 
-//        Amplify.API.query(
-//                ModelQuery.list(Task.class, Task.TEAM.contains(teamList.get(0).getId())),
-//                response -> {
-//          for (Task task : response.getData()){
-//              tasks.add(task);
-//          }
-//          mainHandler.sendEmptyMessage(7);
-//                },
-//                response -> {}
-//        );
-
-        try {
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
 
 
-//            Log.i("MyAmplifyApp", "Initialized Amplify");
-        } catch (AmplifyException error) {
-//            Log.e("MyAmplifyApp", "Could not initialize Amplify", error);
-        }
-//        Amplify.API.query(
-//                ModelQuery.list(Team.class, Team.NAME.contains(team)),
-//                response -> {
-//                    for (Team team1 : response.getData()){
-//                        teams.add(team1);
-//                    }
-//
-//                },
-//                response -> {}
-//        );
-//
         String team = pref.getString("team", null);
-        if (team != null){
+        if (team != null) {
 
-        Amplify.API.query(
-                ModelQuery.list(Team.class, Team.NAME.contains(team)),
-                response -> {
+            Amplify.API.query(
+                    ModelQuery.list(Team.class, Team.NAME.contains(team)),
+                    response -> {
 
-                    for (Team team1 : response.getData()){
-                        Log.i(TAG, "onCreate: "+ team1);
-                        teamList.add(team1);
+                        for (Team team1 : response.getData()) {
+                            Log.i(TAG, "onCreate: " + team1);
+                            teamList.add(team1);
+                        }
+                        mainHandler.sendEmptyMessage(8);
+                    },
+                    response -> {
                     }
-                    mainHandler.sendEmptyMessage(8);
-                },
-                response -> {}
-        );
+            );
 
         } else {
             Amplify.API.query(
                     ModelQuery.list(Task.class),
                     response -> {
-                        for (Task task : response.getData()){
+                        for (Task task : response.getData()) {
                             tasks.add(task);
                         }
                         mainHandler.sendEmptyMessage(7);
                     },
-                    response -> {}
+                    response -> {
+                    }
             );
         }
 
 
 //          til you need both responses otherwise you'll get silly errors
-
-
 
 
 //            taskDatabase = Room.databaseBuilder(getApplicationContext(), TaskDatabase.class, "shaybrow_task_db")
@@ -151,7 +149,8 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 
 
         String username = pref.getString("username", null);
-        if (username != null) ((TextView)findViewById(R.id.usernameDisplay)).setText(String.format(Locale.ENGLISH, username + "'s tasks"));
+        if (username != null)
+            ((TextView) findViewById(R.id.usernameDisplay)).setText(String.format(Locale.ENGLISH, username + "'s tasks"));
 
 // button onclick
 //        get by id
@@ -165,11 +164,10 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         potatoAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.i(TAG, "This is how we long in 2021");
+
                 Intent goToAddTasks = new Intent(MainActivity.this, addTask.class);
 //                where we're coming from, where we are going
                 startActivity(goToAddTasks);
-
 
 
             }
@@ -181,26 +179,15 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         allTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToAllTasks = new Intent(MainActivity.this, allTasks.class );
+                Intent goToAllTasks = new Intent(MainActivity.this, allTasks.class);
                 startActivity(goToAllTasks);
             }
         });
 
 
 
-//        Button recycle = findViewById(R.id.recyclerView);
-//
-//        recycle.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, allTasks.class );
-//                startActivity(intent);
-//            }
-//        });
-
-
         Button userProfile = findViewById(R.id.userProfileButton);
-        userProfile.setOnClickListener(view ->{
+        userProfile.setOnClickListener(view -> {
             Intent goToUserProfile = new Intent(this, UserProfile.class);
             startActivity(goToUserProfile);
         });
@@ -210,10 +197,9 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             @Override
             public void onClick(View v) {
                 Intent goToGetAJob = new Intent(MainActivity.this, TaskDetails.class);
-                String title = ((Button)findViewById(R.id.getAJob)).getText().toString();
+                String title = ((Button) findViewById(R.id.getAJob)).getText().toString();
                 goToGetAJob.putExtra("taskTitle", title);
                 startActivity(goToGetAJob);
-
 
 
             }
@@ -223,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             @Override
             public void onClick(View v) {
                 Intent goMealPrep = new Intent(MainActivity.this, TaskDetails.class);
-                String title = ((Button)findViewById(R.id.mealPrep)).getText().toString();
+                String title = ((Button) findViewById(R.id.mealPrep)).getText().toString();
                 goMealPrep.putExtra("taskTitle", title);
                 startActivity(goMealPrep);
 
@@ -235,7 +221,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             @Override
             public void onClick(View v) {
                 Intent goSleep = new Intent(MainActivity.this, TaskDetails.class);
-                String title = ((Button)findViewById(R.id.sleep)).getText().toString();
+                String title = ((Button) findViewById(R.id.sleep)).getText().toString();
                 goSleep.putExtra("taskTitle", title);
                 startActivity(goSleep);
 
