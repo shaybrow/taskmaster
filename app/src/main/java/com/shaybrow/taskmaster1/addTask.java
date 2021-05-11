@@ -30,7 +30,8 @@ public class addTask extends AppCompatActivity {
   static String TAG = "s.addTask";
     TaskDatabase taskDatabase;
 
-    static List<Team> teams = new ArrayList<>();
+    static List<Team> teamList = new ArrayList<>();
+    Handler addHandler;
     //    int count =0;
         @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,27 @@ public class addTask extends AppCompatActivity {
         setContentView(R.layout.activity_add_task);
 
         Spinner spinner = findViewById(R.id.teamSpinnerAdd);
-        String[] items = new String []{"The Powder Puff People", "Guardians of the Garage", "The Power Ragers"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        spinner.setAdapter(adapter);
+        addHandler = new Handler(this.getMainLooper()){
+            @Override
+            public void handleMessage(@NonNull Message message) {
+                super.handleMessage(message);
+                if (message.what == 8){
+                    ArrayAdapter<Team> adapter = new ArrayAdapter<>(addTask.this, android.R.layout.simple_spinner_dropdown_item, teamList);
+                    adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+                    spinner.setAdapter(adapter);
+
+                }
+            }
+        };
+            Amplify.API.query(ModelQuery.list(Team.class),
+                    r -> {
+                        for (Team t : r.getData()){
+                            teamList.add(t);
+                        }
+                        addHandler.sendEmptyMessage(8);
+                    },
+                    r->{});
+
 
 
 //        taskDatabase = Room.databaseBuilder(getApplicationContext(),TaskDatabase.class, "shaybrow_task_db" ).allowMainThreadQueries().build();
@@ -50,7 +69,7 @@ public class addTask extends AppCompatActivity {
 
         button.setOnClickListener( view -> {
             String team = spinner.getSelectedItem().toString();
-            Team team1 = Team.builder().name("The Powder Puff People").build();
+            Team t = (Team)spinner.getSelectedItem();
 
 
 
@@ -58,7 +77,7 @@ public class addTask extends AppCompatActivity {
             String body = ((EditText)findViewById(R.id.importTaskBody)).getText().toString();
             Task task = Task.builder()
             .title(title)
-            .body(body).team(team1)
+            .body(body).team(t)
                     .build();
 
 //            taskDatabase.taskDao().insert(task);
@@ -70,9 +89,9 @@ public class addTask extends AppCompatActivity {
 //            ((TextView) findViewById(R.id.taskTotal)).setText(String.format(Locale.ENGLISH, "Total Tasks" + count));
             Amplify.API.mutate(ModelMutation.create(task),
                     response -> {
-                        Log.i(TAG, "onCreate: added");
+//                        Log.i(TAG, "onCreate: added");
                     }, response ->{
-                        Log.i(TAG, "onCreate: miss");
+//                        Log.i(TAG, "onCreate: miss");
                     });
 
 //            Intent intent = new Intent(addTask.this, allTasks.class);
