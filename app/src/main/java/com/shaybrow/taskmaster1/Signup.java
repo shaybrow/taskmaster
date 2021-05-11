@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
@@ -37,7 +38,7 @@ String TAG = "shaybrow.signup";
 
                     },
                     r-> {
-                        Log.i(TAG, "onCreate: "+ r);
+                        Toast.makeText(Signup.this, "sign-up failed", Toast.LENGTH_LONG);
                     }
 
             );

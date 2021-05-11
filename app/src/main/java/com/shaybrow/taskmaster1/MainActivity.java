@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
@@ -96,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
                     );
 
                 }
+                if (message.what == 200) startActivity(new Intent(MainActivity.this, MainActivity.class));
             }
         };
 
@@ -206,9 +208,28 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         AuthUser prince = Amplify.Auth.getCurrentUser();
         if (prince != null){
+            Button login = findViewById(R.id.buttonLoginLink);
+            login.setOnClickListener(null);
+            login.setVisibility(View.INVISIBLE);
+            Button signup = findViewById(R.id.signupButtonLink);
+            signup.setOnClickListener(null);
+            signup.setVisibility(View.INVISIBLE);
+
             String email = prince.getUsername();
             ((TextView) findViewById(R.id.userEmailDisplay)).setText(email);
+            Button logout = findViewById(R.id.buttonLogout);
+            logout.setVisibility(View.VISIBLE);
+            logout.setOnClickListener( v ->{
 
+                Amplify.Auth.signOut(
+                        () -> mainHandler.sendEmptyMessage(200),
+                        error -> mainHandler.sendEmptyMessage(201)
+                        );
+            });
+
+        } else {
+            Button logout = findViewById(R.id.buttonLogout);
+            logout.setVisibility(View.INVISIBLE);
         }
 
 
