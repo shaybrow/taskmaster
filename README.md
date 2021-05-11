@@ -4,6 +4,8 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
+![](screenshots/homescreen510.PNG)
+
 ![](screenshots/homescreen506.PNG)
 
 ![](screenshots/homescreen505.PNG)
@@ -17,6 +19,16 @@ An app designed to create and track tasks and mark their completion. Still in de
 ![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 5.10.21
+
+- cognito auth implemented
+
+- user can sign up, in and log out
+
+- logout button hidden when not signed in
+
+- login and signup button hidden when signed in
 
 ### 5.06.21
 
