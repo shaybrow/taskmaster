@@ -116,4 +116,12 @@
         app:layout_constraintTop_toTopOf="@+id/buttonLoginLink"
         app:layout_constraintVertical_bias="1.0" />
 
+    <ImageView
+        android:id="@+id/testImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="515dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

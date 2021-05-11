@@ -10,8 +10,8 @@
         android:id="@+id/importTaskTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:text="@string/replacedtitle"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="24dp"
         android:text="@string/lorem_ipsum"
         app:layout_constraintStart_toStartOf="@+id/importTaskTitle"
         app:layout_constraintTop_toBottomOf="@+id/importTaskTitle" />
@@ -31,8 +31,19 @@
         android:id="@+id/importTaskState"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="28dp"
         android:text="@string/textview"
         app:layout_constraintStart_toStartOf="@+id/importTaskTitle"
         app:layout_constraintTop_toBottomOf="@+id/importTaskBody" />
+
+    <ImageView
+        android:id="@+id/imageTaskDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/importTaskState"
+        app:srcCompat="@android:drawable/picture_frame" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,26 +77,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/taskTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="40dp"
-        android:text="Total Tasks: 0"
-        app:layout_constraintStart_toStartOf="@+id/submitTask"
-        app:layout_constraintTop_toBottomOf="@+id/submitTask" />
-
-    <TextView
         android:id="@+id/submitted"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
         android:text="Submitted!"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@+id/submitTask"
-        app:layout_constraintStart_toEndOf="@+id/submitTask"
-        app:layout_constraintTop_toTopOf="@+id/submitTask" />
+        app:layout_constraintStart_toStartOf="@+id/submitTask"
+        app:layout_constraintTop_toBottomOf="@+id/submitTask" />
 
     <Spinner
         android:id="@+id/teamSpinnerAdd"
@@ -106,5 +96,14 @@
         app:layout_constraintBottom_toTopOf="@+id/submitTask"
         app:layout_constraintTop_toBottomOf="@+id/importTaskBody"
         tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/buttonAddImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Image"
+        app:layout_constraintBottom_toBottomOf="@+id/submitTask"
+        app:layout_constraintEnd_toEndOf="@+id/importTaskBody"
+        app:layout_constraintTop_toTopOf="@+id/submitTask" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

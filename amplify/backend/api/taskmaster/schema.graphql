@@ -12,5 +12,6 @@ type Task @model
   title: String!
   body: String
   state: String
+  s3ImageKey: String
   team: Team @connection(fields: ["teamID"])
 }
