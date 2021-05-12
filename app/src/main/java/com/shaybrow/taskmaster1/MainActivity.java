@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -23,6 +24,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.Callback;
+import com.amazonaws.mobile.client.UserStateDetails;
+import com.amazonaws.mobile.config.AWSConfiguration;
+
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -33,6 +39,9 @@ import com.amplifyframework.datastore.generated.model.LoginTaskUser;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -57,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         setContentView(R.layout.activity_main);
 
         configure();
+        registerWithFirebaseAndPinpoint();
 
 
 //        Amplify.Auth.confirmSignUp(
@@ -256,6 +266,26 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
                 },
                 r->{});
     }
+    void registerWithFirebaseAndPinpoint(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+
+
+                    @Override
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<String> task) { //TODO: make sure this is the non taskmaster Task
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        } else {
+                            Log.i(TAG, "onComplete: firbaSE GOT A TOKEN");
+                        }
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                    }
+                });
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
