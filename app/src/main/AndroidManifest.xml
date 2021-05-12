@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Taskmaster1">
-        <activity android:name=".TaskList"></activity>
+        <activity android:name="com.amplifyframework.datastore.generated.model.LoginTaskUser"></activity>
+        <activity android:name=".SignupConfirmation" />
+        <activity android:name=".Signup" />
+        <activity android:name=".TaskList" />
         <activity android:name=".TaskDetails" />
         <activity android:name=".UserProfile" />
         <activity android:name=".allTasks" />
