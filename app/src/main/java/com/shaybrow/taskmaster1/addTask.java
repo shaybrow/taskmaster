@@ -1,10 +1,15 @@
 package com.shaybrow.taskmaster1;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -12,6 +17,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -22,11 +28,17 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class addTask extends AppCompatActivity {
+    File fileToUpload;
+
   static String TAG = "s.addTask";
     TaskDatabase taskDatabase;
 
@@ -78,7 +90,7 @@ public class addTask extends AppCompatActivity {
             .title(title)
             .body(body).team(t)
                     .build();
-            
+            saveFile(fileToUpload, task.getId());
 
 //            taskDatabase.taskDao().insert(task);
 
@@ -94,6 +106,56 @@ public class addTask extends AppCompatActivity {
 
 
         });
+            Button button1 = findViewById(R.id.buttonAddImage);
+
+            button1.setOnClickListener( view -> {
+
+            getImageFromPhone();
+
+
+
+
+
+
+            });
+    }
+    void getImageFromPhone() {
+        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
+        i.setType("*/*"); //single type
+//        i.putExtra(Intent.EXTRA_MIME_TYPES, new String []{".jpg", ".png", ".pdf"}); // multiple file types
+        startActivityForResult(i, 9);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 9){
+             fileToUpload = new File(getApplicationContext().getFilesDir(), "uploadingfile");
+            try {
+                InputStream is = getContentResolver().openInputStream(data.getData());
+                FileUtils.copy(is, new FileOutputStream(fileToUpload));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    void saveFile (File file, String key){
+        Amplify.Storage.uploadFile(key, file,
+                r->{
+
+                },
+                r->{});
+    }
+    void downloadFile (String key){
+        Amplify.Storage.downloadFile(key, new File(getApplicationContext().getFilesDir(), key),
+                r->{
+                    ImageView i = findViewById(R.id.testImage);
+                    i.setImageBitmap(BitmapFactory.decodeFile(r.getFile().getPath()));
+                    r.getFile();
+                },
+                r->{});
     }
     @Override
     protected void onResume (){

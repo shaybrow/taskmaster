@@ -4,6 +4,8 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
+![](screenshots/taskdetails511.PNG)
+
 ![](screenshots/homescreen510.PNG)
 
 ![](screenshots/homescreen506.PNG)
@@ -19,6 +21,14 @@ An app designed to create and track tasks and mark their completion. Still in de
 ![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 5.11.21
+
+- add task now accepts an image as an optional input
+
+- task details now displays an image if there's one associated with the task
+
+- implement s3 storage using amplify
 
 ### 5.10.21
 

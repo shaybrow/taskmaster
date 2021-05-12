@@ -25,11 +25,13 @@ public final class Task implements Model {
   public static final QueryField TITLE = field("Task", "title");
   public static final QueryField BODY = field("Task", "body");
   public static final QueryField STATE = field("Task", "state");
+  public static final QueryField S3_IMAGE_KEY = field("Task", "s3ImageKey");
   public static final QueryField TEAM = field("Task", "teamID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String") String body;
   private final @ModelField(targetType="String") String state;
+  private final @ModelField(targetType="String") String s3ImageKey;
   private final @ModelField(targetType="Team") @BelongsTo(targetName = "teamID", type = Team.class) Team team;
   public String getId() {
       return id;
@@ -47,15 +49,20 @@ public final class Task implements Model {
       return state;
   }
   
+  public String getS3ImageKey() {
+      return s3ImageKey;
+  }
+  
   public Team getTeam() {
       return team;
   }
   
-  private Task(String id, String title, String body, String state, Team team) {
+  private Task(String id, String title, String body, String state, String s3ImageKey, Team team) {
     this.id = id;
     this.title = title;
     this.body = body;
     this.state = state;
+    this.s3ImageKey = s3ImageKey;
     this.team = team;
   }
   
@@ -71,6 +78,7 @@ public final class Task implements Model {
               ObjectsCompat.equals(getTitle(), task.getTitle()) &&
               ObjectsCompat.equals(getBody(), task.getBody()) &&
               ObjectsCompat.equals(getState(), task.getState()) &&
+              ObjectsCompat.equals(getS3ImageKey(), task.getS3ImageKey()) &&
               ObjectsCompat.equals(getTeam(), task.getTeam());
       }
   }
@@ -82,6 +90,7 @@ public final class Task implements Model {
       .append(getTitle())
       .append(getBody())
       .append(getState())
+      .append(getS3ImageKey())
       .append(getTeam())
       .toString()
       .hashCode();
@@ -95,6 +104,7 @@ public final class Task implements Model {
       .append("title=" + String.valueOf(getTitle()) + ", ")
       .append("body=" + String.valueOf(getBody()) + ", ")
       .append("state=" + String.valueOf(getState()) + ", ")
+      .append("s3ImageKey=" + String.valueOf(getS3ImageKey()) + ", ")
       .append("team=" + String.valueOf(getTeam()))
       .append("}")
       .toString();
@@ -128,6 +138,7 @@ public final class Task implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -137,6 +148,7 @@ public final class Task implements Model {
       title,
       body,
       state,
+      s3ImageKey,
       team);
   }
   public interface TitleStep {
@@ -149,6 +161,7 @@ public final class Task implements Model {
     BuildStep id(String id) throws IllegalArgumentException;
     BuildStep body(String body);
     BuildStep state(String state);
+    BuildStep s3ImageKey(String s3ImageKey);
     BuildStep team(Team team);
   }
   
@@ -158,6 +171,7 @@ public final class Task implements Model {
     private String title;
     private String body;
     private String state;
+    private String s3ImageKey;
     private Team team;
     @Override
      public Task build() {
@@ -168,6 +182,7 @@ public final class Task implements Model {
           title,
           body,
           state,
+          s3ImageKey,
           team);
     }
     
@@ -187,6 +202,12 @@ public final class Task implements Model {
     @Override
      public BuildStep state(String state) {
         this.state = state;
+        return this;
+    }
+    
+    @Override
+     public BuildStep s3ImageKey(String s3ImageKey) {
+        this.s3ImageKey = s3ImageKey;
         return this;
     }
     
@@ -219,11 +240,12 @@ public final class Task implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String body, String state, Team team) {
+    private CopyOfBuilder(String id, String title, String body, String state, String s3ImageKey, Team team) {
       super.id(id);
       super.title(title)
         .body(body)
         .state(state)
+        .s3ImageKey(s3ImageKey)
         .team(team);
     }
     
@@ -240,6 +262,11 @@ public final class Task implements Model {
     @Override
      public CopyOfBuilder state(String state) {
       return (CopyOfBuilder) super.state(state);
+    }
+    
+    @Override
+     public CopyOfBuilder s3ImageKey(String s3ImageKey) {
+      return (CopyOfBuilder) super.s3ImageKey(s3ImageKey);
     }
     
     @Override
