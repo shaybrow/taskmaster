@@ -78,15 +78,13 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         configure();
         registerWithFirebaseAndPinpoint();
 
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name(OPENEDAPP)
+                .addProperty("shay", "is a pretty cool guy")
 
-//        Amplify.Auth.confirmSignUp(
-//              "shay.brown.13@gmail.com"  , "dsfsdf"
-//        );
-//        AuthUser authUser = Amplify.Auth.getCurrentUser();
+                .build();
 
-//        signup
-//        verification
-//        login
+        Amplify.Analytics.recordEvent(event);
         if (Amplify.Auth.getCurrentUser() != null){
             String id = Amplify.Auth.getCurrentUser().getUserId();
             com.amplifyframework.analytics.UserProfile userProfile = com.amplifyframework.analytics.UserProfile.builder()

@@ -4,7 +4,7 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
-
+![](screenshots/events.png)
 
 ![](screenshots/taskdetails511.PNG)
 
@@ -23,6 +23,10 @@ An app designed to create and track tasks and mark their completion. Still in de
 ![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 5.13.21
+
+- implement pinpoint for user analytics
 
 ### 5.12.21
 
