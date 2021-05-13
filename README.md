@@ -4,7 +4,7 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
-![](screenshots/taskdetails512.PNG)
+
 
 ![](screenshots/taskdetails511.PNG)
 
