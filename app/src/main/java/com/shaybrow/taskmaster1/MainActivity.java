@@ -4,9 +4,15 @@ package com.shaybrow.taskmaster1;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
@@ -23,7 +29,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobile.client.Callback;
+import com.amazonaws.mobile.client.UserStateDetails;
+import com.amazonaws.mobile.config.AWSConfiguration;
+
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.analytics.AnalyticsEvent;
+import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
@@ -33,6 +46,9 @@ import com.amplifyframework.datastore.generated.model.LoginTaskUser;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -40,16 +56,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements TaskListAdapter.ClickOnTaskAble {
     private static final int QUERYRESULT = 7;
     public static String TAG = "shayapp.main";
+    static String OPENEDAPP = "OPENED_APP";
     //    TaskDatabase taskDatabase;
     public List<com.amplifyframework.datastore.generated.model.Task> tasks = new ArrayList<>();
     public List<Team> teamList = new ArrayList<>();
     Handler mainHandler;
+    Date resumedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +76,24 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         setContentView(R.layout.activity_main);
 
         configure();
+        registerWithFirebaseAndPinpoint();
 
+        AnalyticsEvent event = AnalyticsEvent.builder()
+                .name(OPENEDAPP)
+                .addProperty("shay", "is a pretty cool guy")
 
-//        Amplify.Auth.confirmSignUp(
-//              "shay.brown.13@gmail.com"  , "dsfsdf"
-//        );
-//        AuthUser authUser = Amplify.Auth.getCurrentUser();
+                .build();
 
-//        signup
-//        verification
-//        login
+        Amplify.Analytics.recordEvent(event);
+        if (Amplify.Auth.getCurrentUser() != null){
+            String id = Amplify.Auth.getCurrentUser().getUserId();
+            com.amplifyframework.analytics.UserProfile userProfile = com.amplifyframework.analytics.UserProfile.builder()
+                    .email(Amplify.Auth.getCurrentUser().getUsername())
+                    .build();
+            Amplify.Analytics.identifyUser(id, userProfile);
+        }
+        AnalyticsEvent e = AnalyticsEvent.builder().name(OPENEDAPP).addProperty("name", "value").build();
+        Amplify.Analytics.recordEvent(e);
 
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -210,6 +237,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.addPlugin(new AWSS3StoragePlugin());
+            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
             Amplify.configure(getApplicationContext());
 
 
@@ -256,9 +284,30 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
                 },
                 r->{});
     }
+    void registerWithFirebaseAndPinpoint(){
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+
+
+                    @Override
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<String> task) { //TODO: make sure this is the non taskmaster Task
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "Fetching FCM registration token failed", task.getException());
+                            return;
+                        } else {
+                            Log.i(TAG, "onComplete: firbaSE GOT A TOKEN");
+                        }
+                        // Get new FCM registration token
+                        String token = task.getResult();
+                    }
+                });
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
+        resumedTime = new Date();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         AuthUser prince = Amplify.Auth.getCurrentUser();
         if (prince != null){
@@ -288,6 +337,11 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 
 
     }
+    @Override
+    protected void onPause(){
+        super.onPause();
+        AnalyticsTracking.getAnalyticsTracking().timeSpentOnPage(resumedTime, new Date(), "Main Activity");
+    }
 
     @Override
     public void handleClickOnTask(TaskListAdapter.TaskViewHolder taskViewHolder) {
@@ -301,6 +355,24 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         intent.putExtra("taskState", taskViewHolder.task.getState());
         intent.putExtra("taskId", taskViewHolder.task.getId());
         startActivity(intent);
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    void configureNotificationChannel (){
+        String CHANNEL_ID = "100";
+        NotificationChannel c = new NotificationChannel(CHANNEL_ID, "Taskmaster", NotificationManager.IMPORTANCE_DEFAULT);
+        c.setDescription("it is what it is");
+        NotificationManager n = getSystemService(NotificationManager.class);
+        n.createNotificationChannel(c);
+    }
+    public void testNotification (){
+//        Notification n = new Notification();
+        NotificationCompat.Builder b = new NotificationCompat.Builder(this, "100").setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("FDSFDS").setContentText("Fsdfsdfds").setPriority(NotificationCompat.PRIORITY_DEFAULT);
+
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        notificationManagerCompat.notify(1, b.build());
+
 
     }
 }
