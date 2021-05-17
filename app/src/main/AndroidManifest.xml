@@ -13,10 +13,20 @@
         <activity android:name=".SignupConfirmation" />
         <activity android:name=".Signup" />
         <activity android:name=".TaskList" />
-        <activity android:name=".TaskDetails" />
+        <activity android:name=".TaskDetails" >
+
+        </activity>
         <activity android:name=".UserProfile" />
         <activity android:name=".allTasks" />
-        <activity android:name=".addTask" />
+        <activity android:name=".addTask">
+            <intent-filter android:label="add task">
+                <action android:name="android.intent.action.SEND"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <data android:mimeType="image/*"></data>
+                <data android:mimeType="text/plain"/>
+
+            </intent-filter>
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
