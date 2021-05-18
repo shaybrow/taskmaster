@@ -4,6 +4,8 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
+![](screenshots/sharetotask.png)
+
 ![](screenshots/events.png)
 
 ![](screenshots/taskdetails511.PNG)
@@ -23,6 +25,14 @@ An app designed to create and track tasks and mark their completion. Still in de
 ![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 5.17.21
+
+- implement intent filters
+
+- user can share images to task details
+
+- button indicates if image is already selected
 
 ### 5.13.21
 

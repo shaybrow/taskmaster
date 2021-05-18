@@ -124,6 +124,7 @@ public class addTask extends AppCompatActivity {
         Intent i = new Intent(Intent.ACTION_GET_CONTENT);
         i.setType("*/*"); //single type
 //        i.putExtra(Intent.EXTRA_MIME_TYPES, new String []{".jpg", ".png", ".pdf"}); // multiple file types
+
         startActivityForResult(i, 9);
     }
 
@@ -137,6 +138,8 @@ public class addTask extends AppCompatActivity {
             try {
                 InputStream is = getContentResolver().openInputStream(data.getData());
                 FileUtils.copy(is, new FileOutputStream(fileToUpload));
+                Button button1 = findViewById(R.id.buttonAddImage);
+                button1.setText("Different Image");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -172,13 +175,14 @@ public class addTask extends AppCompatActivity {
 
     void checkIntentData() throws IOException {
         Intent i = getIntent();
-        if (i.getType().startsWith("image/")) {
+        if (i.getType() == null){}
+        else if (i.getType().startsWith("image/")) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
             Uri uri = i.getParcelableExtra(Intent.EXTRA_STREAM);
-//            todo load image from intent
+
             loadImageFromIntent(uri);
         }
-        }else if (i.getType().startsWith("test/plain")) {
+        }else if (i.getType().startsWith("text/plain")) {
             String text = i.getStringExtra(Intent.EXTRA_TEXT);
             ((EditText) findViewById(R.id.taskTitle)).setText(text);
 
@@ -191,6 +195,8 @@ public class addTask extends AppCompatActivity {
         try{
             InputStream inputStream = getContentResolver().openInputStream(uri);
             FileUtils.copy(inputStream, new FileOutputStream(fileToUpload));
+            Button button1 = findViewById(R.id.buttonAddImage);
+            button1.setText("Different Image");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
