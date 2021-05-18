@@ -4,18 +4,23 @@ package com.shaybrow.taskmaster1;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.FileUtils;
@@ -46,6 +51,11 @@ import com.amplifyframework.datastore.generated.model.LoginTaskUser;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
 import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -69,11 +79,16 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
     public List<Team> teamList = new ArrayList<>();
     Handler mainHandler;
     Date resumedTime;
+    FusedLocationProviderClient fusedLocationProviderClient;
+    Geocoder geocoder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        reqPermissions();
+        loadLocationClient();
         AmplifyConfig.configureAmplify(getApplication(), getApplicationContext());
 
         registerWithFirebaseAndPinpoint();
@@ -85,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
                 .build();
 
         Amplify.Analytics.recordEvent(event);
-        if (Amplify.Auth.getCurrentUser() != null){
+        if (Amplify.Auth.getCurrentUser() != null) {
             String id = Amplify.Auth.getCurrentUser().getUserId();
             com.amplifyframework.analytics.UserProfile userProfile = com.amplifyframework.analytics.UserProfile.builder()
                     .email(Amplify.Auth.getCurrentUser().getUsername())
@@ -126,10 +141,10 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
                     );
 
                 }
-                if (message.what == 200) startActivity(new Intent(MainActivity.this, MainActivity.class));
+                if (message.what == 200)
+                    startActivity(new Intent(MainActivity.this, MainActivity.class));
             }
         };
-
 
 
         String team = pref.getString("team", null);
@@ -212,7 +227,6 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         });
 
 
-
         Button userProfile = findViewById(R.id.userProfileButton);
         userProfile.setOnClickListener(view -> {
             Intent goToUserProfile = new Intent(this, UserProfile.class);
@@ -253,12 +267,13 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 //        i.putExtra(Intent.EXTRA_MIME_TYPES, new String []{".jpg", ".png", ".pdf"}); // multiple file types
         startActivityForResult(i, 9);
     }
+
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 9){
+        if (requestCode == 9) {
             File f = new File(getApplicationContext().getFilesDir(), "uploadingfile");
             try {
                 InputStream is = getContentResolver().openInputStream(data.getData());
@@ -268,23 +283,24 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             }
         }
     }
-    void saveFile (File file, String name){
-        Amplify.Storage.uploadFile(name, file,
-                r->{
 
-                },
-                r->{});
-    }
-    void downloadFile (String key){
-        Amplify.Storage.downloadFile(key, new File(getApplicationContext().getFilesDir(), key),
-                r->{
-            ImageView i = findViewById(R.id.testImage);
-            i.setImageBitmap(BitmapFactory.decodeFile(r.getFile().getPath()));
-            r.getFile();
-                },
-                r->{});
-    }
-    void registerWithFirebaseAndPinpoint(){
+    //    void saveFile (File file, String name){
+//        Amplify.Storage.uploadFile(name, file,
+//                r->{
+//
+//                },
+//                r->{});
+//    }
+//    void downloadFile (String key){
+//        Amplify.Storage.downloadFile(key, new File(getApplicationContext().getFilesDir(), key),
+//                r->{
+//            ImageView i = findViewById(R.id.testImage);
+//            i.setImageBitmap(BitmapFactory.decodeFile(r.getFile().getPath()));
+//            r.getFile();
+//                },
+//                r->{});
+//    }
+    void registerWithFirebaseAndPinpoint() {
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(new OnCompleteListener<String>() {
 
@@ -310,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         resumedTime = new Date();
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         AuthUser prince = Amplify.Auth.getCurrentUser();
-        if (prince != null){
+        if (prince != null) {
             Button login = findViewById(R.id.buttonLoginLink);
             login.setOnClickListener(null);
             login.setVisibility(View.INVISIBLE);
@@ -322,12 +338,12 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             ((TextView) findViewById(R.id.userEmailDisplay)).setText(email);
             Button logout = findViewById(R.id.buttonLogout);
             logout.setVisibility(View.VISIBLE);
-            logout.setOnClickListener( v ->{
+            logout.setOnClickListener(v -> {
 
                 Amplify.Auth.signOut(
                         () -> mainHandler.sendEmptyMessage(200),
                         error -> mainHandler.sendEmptyMessage(201)
-                        );
+                );
             });
 
         } else {
@@ -337,8 +353,9 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
 
 
     }
+
     @Override
-    protected void onPause(){
+    protected void onPause() {
         super.onPause();
         AnalyticsTracking.getAnalyticsTracking().timeSpentOnPage(resumedTime, new Date(), "Main Activity");
     }
@@ -357,15 +374,17 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         startActivity(intent);
 
     }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
-    void configureNotificationChannel (){
+    void configureNotificationChannel() {
         String CHANNEL_ID = "100";
         NotificationChannel c = new NotificationChannel(CHANNEL_ID, "Taskmaster", NotificationManager.IMPORTANCE_DEFAULT);
         c.setDescription("it is what it is");
         NotificationManager n = getSystemService(NotificationManager.class);
         n.createNotificationChannel(c);
     }
-    public void testNotification (){
+
+    public void testNotification() {
 //        Notification n = new Notification();
         NotificationCompat.Builder b = new NotificationCompat.Builder(this, "100").setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentTitle("FDSFDS").setContentText("Fsdfsdfds").setPriority(NotificationCompat.PRIORITY_DEFAULT);
@@ -373,6 +392,49 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         notificationManagerCompat.notify(1, b.build());
 
+
+    }
+
+    public void reqPermissions() {
+//        permissions in manifest
+//        request
+//        load FusedLocationProviderClient
+        requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION}, 0);
+    }
+
+    void loadLocationClient() {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+        geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+    }
+
+    void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(loc -> { if (loc != null)Log.i(TAG, "getLocation: "+ loc);
+            try {
+                List <Address> address = geocoder.getFromLocation(loc.getLatitude(), loc.getLongitude(), 1);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        })
+        .addOnCanceledListener(() -> Log.i(TAG, "cancelled")).addOnFailureListener(e -> Log.i(TAG, "failed:" + e));
+    }
+    void getLocationUpdates(){
+        LocationRequest locationRequest = LocationRequest.create();
+        locationRequest.setInterval(10000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        LocationCallback locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(@NonNull LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+                
+                Log.i(TAG, "onLocationResult: "+ );
+            }
+
+        };
 
     }
 }
