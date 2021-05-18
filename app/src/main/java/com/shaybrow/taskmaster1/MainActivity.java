@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AmplifyConfig.configureAmplify(getApplication(), getApplicationContext());
 
-        configure();
         registerWithFirebaseAndPinpoint();
 
         AnalyticsEvent event = AnalyticsEvent.builder()
@@ -231,20 +231,20 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         });
 
     }
-    void configure(){
-        try {
-
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.addPlugin(new AWSCognitoAuthPlugin());
-            Amplify.addPlugin(new AWSS3StoragePlugin());
-            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
-            Amplify.configure(getApplicationContext());
-
-
-        } catch (AmplifyException error) {
-
-        }
-    }
+//    void configure(){
+//        try {
+//
+//            Amplify.addPlugin(new AWSApiPlugin());
+//            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+//            Amplify.addPlugin(new AWSS3StoragePlugin());
+//            Amplify.addPlugin(new AWSPinpointAnalyticsPlugin(getApplication()));
+//            Amplify.configure(getApplicationContext());
+//
+//
+//        } catch (AmplifyException error) {
+//
+//        }
+//    }
 
 
     void getImageFromPhone() {

@@ -19,6 +19,7 @@ public class TaskDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_details);
+        AmplifyConfig.configureAmplify(getApplication(), getApplicationContext());
 
         Intent loadIntent = getIntent();
         ((TextView)findViewById(R.id.importTaskTitle)).setText(loadIntent.getStringExtra("taskTitle"));
@@ -32,8 +33,11 @@ public class TaskDetails extends AppCompatActivity {
         Amplify.Storage.downloadFile(key, new File(getApplicationContext().getFilesDir(), key),
                 r->{
                     ImageView i = findViewById(R.id.imageTaskDetail);
-                    i.setImageBitmap(BitmapFactory.decodeFile(r.getFile().getPath()));
-                    r.getFile();
+                    if (r.getFile() != null){
+                        i.setImageBitmap(BitmapFactory.decodeFile(r.getFile().getPath()));
+                        r.getFile();
+                    }
+
                 },
                 r->{});
     }
