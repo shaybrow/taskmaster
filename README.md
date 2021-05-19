@@ -4,6 +4,8 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
+![](screenshots/location.png)
+
 ![](screenshots/sharetotask.png)
 
 ![](screenshots/events.png)
@@ -25,6 +27,16 @@ An app designed to create and track tasks and mark their completion. Still in de
 ![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 5.18.21
+
+- location permission request upon opening app
+
+- location added to task schema
+
+- location included in task if given permission
+
+- 
 
 ### 5.17.21
 
