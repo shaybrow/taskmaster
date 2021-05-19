@@ -371,6 +371,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         intent.putExtra("taskBody", taskViewHolder.task.getBody());
         intent.putExtra("taskState", taskViewHolder.task.getState());
         intent.putExtra("taskId", taskViewHolder.task.getId());
+        intent.putExtra("taskLocation", taskViewHolder.task.getLocation());
         startActivity(intent);
 
     }
@@ -431,7 +432,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
             public void onLocationResult(@NonNull LocationResult locationResult) {
                 super.onLocationResult(locationResult);
                 
-                Log.i(TAG, "onLocationResult: "+ );
+                Log.i(TAG, "onLocationResult: ");
             }
 
         };

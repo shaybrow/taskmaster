@@ -14,6 +14,7 @@ mutation CreateTeam(
         body
         state
         s3ImageKey
+        location
         createdAt
         updatedAt
       }
@@ -38,6 +39,7 @@ mutation UpdateTeam(
         body
         state
         s3ImageKey
+        location
         createdAt
         updatedAt
       }
@@ -62,6 +64,7 @@ mutation DeleteTeam(
         body
         state
         s3ImageKey
+        location
         createdAt
         updatedAt
       }
@@ -82,6 +85,7 @@ mutation CreateTask(
     body
     state
     s3ImageKey
+    location
     team {
       id
       name
@@ -106,6 +110,7 @@ mutation UpdateTask(
     body
     state
     s3ImageKey
+    location
     team {
       id
       name
@@ -130,6 +135,7 @@ mutation DeleteTask(
     body
     state
     s3ImageKey
+    location
     team {
       id
       name
