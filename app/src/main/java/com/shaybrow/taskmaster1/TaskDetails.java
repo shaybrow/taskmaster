@@ -25,6 +25,8 @@ public class TaskDetails extends AppCompatActivity {
         ((TextView)findViewById(R.id.importTaskTitle)).setText(loadIntent.getStringExtra("taskTitle"));
         ((TextView)findViewById(R.id.importTaskBody)).setText(loadIntent.getStringExtra("taskBody"));
         ((TextView)findViewById(R.id.importTaskState)).setText(loadIntent.getStringExtra("taskState"));
+        if (loadIntent.getStringExtra("taskLocation") != null)((TextView)findViewById(R.id.textViewLocation)).setText(loadIntent.getStringExtra("taskLocation"));
+
         String id = loadIntent.getStringExtra("taskId");
         downloadFile(id);
 

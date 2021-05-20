@@ -3,10 +3,15 @@ package com.shaybrow.taskmaster1;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.room.Room;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
+import android.location.Address;
+import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +34,8 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -45,7 +52,9 @@ public class addTask extends AppCompatActivity {
     File fileToUpload;
     TaskDatabase taskDatabase;
     Handler addHandler;
-
+    FusedLocationProviderClient fusedLocationProviderClient;
+    Geocoder geocoder;
+    List <Address> address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +66,8 @@ public class addTask extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        loadLocationClient();
+        getLocation();
         Spinner spinner = findViewById(R.id.teamSpinnerAdd);
         addHandler = new Handler(this.getMainLooper()) {
             @Override
@@ -90,23 +101,41 @@ public class addTask extends AppCompatActivity {
             Team t = (Team) spinner.getSelectedItem();
 
 
+
             String title = ((EditText) findViewById(R.id.taskTitle)).getText().toString();
             String body = ((EditText) findViewById(R.id.importTaskBody)).getText().toString();
-            Task task = Task.builder()
-                    .title(title)
-                    .body(body).team(t)
-                    .build();
-            saveFile(fileToUpload, task.getId());
+            if (address != null){
+                String address1 = address.get(0).getAddressLine(0).toString();
+                Task task = Task.builder()
+                        .title(title)
+                        .body(body).team(t).location(address1)
+                        .build();
+                saveFile(fileToUpload, task.getId());
+                Amplify.API.mutate(ModelMutation.create(task),
+                        response -> {
+//                        Log.i(TAG, "onCreate: added");
+                        }, response -> {
+//                        Log.i(TAG, "onCreate: miss");
+                        });
+            } else{
+                Task task = Task.builder()
+                        .title(title)
+                        .body(body).team(t)
+                        .build();
+                saveFile(fileToUpload, task.getId());
+                Amplify.API.mutate(ModelMutation.create(task),
+                        response -> {
+//                        Log.i(TAG, "onCreate: added");
+                        }, response -> {
+//                        Log.i(TAG, "onCreate: miss");
+                        });
+            }
+
 
 //            taskDatabase.taskDao().insert(task);
 
             findViewById(R.id.submitted).setVisibility(View.VISIBLE);
-            Amplify.API.mutate(ModelMutation.create(task),
-                    response -> {
-//                        Log.i(TAG, "onCreate: added");
-                    }, response -> {
-//                        Log.i(TAG, "onCreate: miss");
-                    });
+
 
 
         });
@@ -200,5 +229,29 @@ public class addTask extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+    void loadLocationClient() {
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
+        geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+    }
+
+    void getLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        fusedLocationProviderClient.getLastLocation().addOnSuccessListener(loc -> { if (loc != null){
+
+
+            try {
+                address =geocoder.getFromLocation(loc.getLatitude(), loc.getLongitude(), 1);
+                Log.i(TAG, "getLocation: "+ address.get(0).getAddressLine(0).toString());
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }}
+        })
+                .addOnCanceledListener(() -> Log.i(TAG, "cancelled")).addOnFailureListener(e -> Log.i(TAG, "failed:" + e));
     }
 }
