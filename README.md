@@ -4,6 +4,8 @@ An app designed to create and track tasks and mark their completion. Still in de
 
 ## Screenshot
 
+![](screenshots/events2.png)
+
 ![](screenshots/location.png)
 
 ![](screenshots/sharetotask.png)
@@ -27,6 +29,10 @@ An app designed to create and track tasks and mark their completion. Still in de
 ![](screenshots/homescreen428.PNG)
 
 ## Changelog
+
+### 5.19.21
+
+- add event tracking for add task
 
 ### 5.18.21
 
