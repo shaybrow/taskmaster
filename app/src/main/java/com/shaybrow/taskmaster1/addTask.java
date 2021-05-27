@@ -29,6 +29,7 @@ import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.amplifyframework.analytics.AnalyticsEvent;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
@@ -47,6 +48,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class addTask extends AppCompatActivity {
+    private static final String WENTTOADDTASK = "OPENED_ADD_TASK" ;
     static List<Team> teamList = new ArrayList<>();
     static String TAG = "s.addTask";
     File fileToUpload;
@@ -66,6 +68,8 @@ public class addTask extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        AnalyticsEvent e = AnalyticsEvent.builder().name(WENTTOADDTASK).addProperty("Add Task", 1).build();
+        Amplify.Analytics.recordEvent(e);
         loadLocationClient();
         getLocation();
         Spinner spinner = findViewById(R.id.teamSpinnerAdd);
