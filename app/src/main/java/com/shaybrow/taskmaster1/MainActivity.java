@@ -1,3 +1,4 @@
+
 package com.shaybrow.taskmaster1;
 
 
@@ -424,4 +425,5 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         };
 
     }
+
 }

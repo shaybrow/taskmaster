@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">taskmaster1</string>
+    <string name="submit">Submit</string>
+    <string name="task_title">Task Title</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="all_tasks">All Tasks</string>
+    <string name="placeholder">placeholder</string>
+    <string name="replacedtitle">replacedTitle</string>
+    <string name="lorem_ipsum">Lorem Ipsum</string>
+    <string name="textview">TextView</string>
+    <string name="user_settings">User Settings</string>
+    <string name="username">Username</string>
+    <string name="update_username">Update Username</string>
+    <string name="go_home">Go Home</string>
+
+</resources>
