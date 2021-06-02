@@ -1,0 +1,18 @@
+type Team @model
+   {
+  id: ID!
+  name: String!
+  tasks: [Task] @connection(keyName: "byTeam", fields: ["id"])
+}
+type Task @model
+@key(name: "byTeam", fields: ["teamID"])
+{
+  id: ID!
+  teamID: ID!
+  title: String!
+  body: String
+  state: String
+  s3ImageKey: String
+  location: String
+  team: Team @connection(fields: ["teamID"])
+}

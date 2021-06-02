@@ -1,0 +1,51 @@
+com/shaybrow/taskmaster1/UserProfile.java
+ com.shaybrow.taskmaster1.UserProfile
+ com.shaybrow.taskmaster1.UserProfile$1
+ com.shaybrow.taskmaster1.UserProfile$2
+com/shaybrow/taskmaster1/fragments/TaskFragment.java
+ com.shaybrow.taskmaster1.fragments.TaskFragment
+com/shaybrow/taskmaster1/addTask.java
+ com.shaybrow.taskmaster1.addTask
+ com.shaybrow.taskmaster1.addTask$1
+com/shaybrow/taskmaster1/allTasks.java
+ com.shaybrow.taskmaster1.allTasks
+com/amplifyframework/datastore/generated/model/Task.java
+ com.amplifyframework.datastore.generated.model.Task
+ com.amplifyframework.datastore.generated.model.Task$1
+ com.amplifyframework.datastore.generated.model.Task$BuildStep
+ com.amplifyframework.datastore.generated.model.Task$Builder
+ com.amplifyframework.datastore.generated.model.Task$CopyOfBuilder
+ com.amplifyframework.datastore.generated.model.Task$TitleStep
+com/shaybrow/taskmaster1/TaskDatabase.java
+ com.shaybrow.taskmaster1.TaskDatabase
+com/amplifyframework/datastore/generated/model/AmplifyModelProvider.java
+ com.amplifyframework.datastore.generated.model.AmplifyModelProvider
+com/shaybrow/taskmaster1/models/Task.java
+ com.shaybrow.taskmaster1.models.Task
+com/shaybrow/taskmaster1/TaskList.java
+ com.shaybrow.taskmaster1.TaskList
+com/shaybrow/taskmaster1/MainActivity.java
+ com.shaybrow.taskmaster1.MainActivity
+ com.shaybrow.taskmaster1.MainActivity$1
+ com.shaybrow.taskmaster1.MainActivity$2
+ com.shaybrow.taskmaster1.MainActivity$3
+ com.shaybrow.taskmaster1.MainActivity$4
+ com.shaybrow.taskmaster1.MainActivity$5
+ com.shaybrow.taskmaster1.MainActivity$6
+com/shaybrow/taskmaster1/BuildConfig.java
+ com.shaybrow.taskmaster1.BuildConfig
+com/shaybrow/taskmaster1/TaskListAdapter.java
+ com.shaybrow.taskmaster1.TaskListAdapter
+ com.shaybrow.taskmaster1.TaskListAdapter$ClickOnTaskAble
+ com.shaybrow.taskmaster1.TaskListAdapter$TaskViewHolder
+com/amplifyframework/datastore/generated/model/Team.java
+ com.amplifyframework.datastore.generated.model.Team
+ com.amplifyframework.datastore.generated.model.Team$1
+ com.amplifyframework.datastore.generated.model.Team$BuildStep
+ com.amplifyframework.datastore.generated.model.Team$Builder
+ com.amplifyframework.datastore.generated.model.Team$CopyOfBuilder
+ com.amplifyframework.datastore.generated.model.Team$NameStep
+com/shaybrow/taskmaster1/daos/TaskDao.java
+ com.shaybrow.taskmaster1.daos.TaskDao
+com/shaybrow/taskmaster1/TaskDetails.java
+ com.shaybrow.taskmaster1.TaskDetails

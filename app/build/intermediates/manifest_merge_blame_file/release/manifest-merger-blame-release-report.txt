@@ -1,0 +1,143 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.shaybrow.taskmaster1"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="23"
+8-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml
+9        android:targetSdkVersion="30" />
+9-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->[com.amplifyframework:aws-api:1.17.4] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\f3160ff14d138880a420ab471b76a472\jetified-aws-api-1.17.4\AndroidManifest.xml:24:5-67
+11-->[com.amplifyframework:aws-api:1.17.4] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\f3160ff14d138880a420ab471b76a472\jetified-aws-api-1.17.4\AndroidManifest.xml:24:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Permission will be merged into the manifest of the hosting app. -->
+12-->[com.amazonaws:aws-android-sdk-mobile-client:2.23.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\c97bad2cccfbba8b3cab62ff41c287bc\jetified-aws-android-sdk-mobile-client-2.23.0\AndroidManifest.xml:18:5-79
+12-->[com.amazonaws:aws-android-sdk-mobile-client:2.23.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\c97bad2cccfbba8b3cab62ff41c287bc\jetified-aws-android-sdk-mobile-client-2.23.0\AndroidManifest.xml:18:22-76
+13    <!-- Is required to launch foreground extraction service for targetSdkVersion 28+. -->
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+14-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:8:3-74
+14-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:8:20-72
+15
+16    <application
+16-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:5:5-24:19
+17        android:allowBackup="true"
+17-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:6:9-35
+18        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+18-->[androidx.core:core:1.3.2] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\870f77caa98361babb7de475f36bb8a2\core-1.3.2\AndroidManifest.xml:24:18-86
+19        android:extractNativeLibs="false"
+20        android:icon="@mipmap/ic_launcher"
+20-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:7:9-43
+21        android:label="@string/app_name"
+21-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:8:9-41
+22        android:roundIcon="@mipmap/ic_launcher_round"
+22-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:9:9-54
+23        android:supportsRtl="true"
+23-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:10:9-35
+24        android:theme="@style/Theme.Taskmaster1" >
+24-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:11:9-49
+25        <activity android:name="com.shaybrow.taskmaster1.TaskList" />
+25-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:12:9-55
+25-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:12:19-43
+26        <activity android:name="com.shaybrow.taskmaster1.TaskDetails" />
+26-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:13:9-49
+26-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:13:19-46
+27        <activity android:name="com.shaybrow.taskmaster1.UserProfile" />
+27-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:14:9-49
+27-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:14:19-46
+28        <activity android:name="com.shaybrow.taskmaster1.allTasks" />
+28-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:15:9-46
+28-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:15:19-43
+29        <activity android:name="com.shaybrow.taskmaster1.addTask" />
+29-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:16:9-45
+29-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:16:19-42
+30        <activity android:name="com.shaybrow.taskmaster1.MainActivity" >
+30-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:17:9-23:20
+30-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:17:19-47
+31            <intent-filter>
+31-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:18:13-22:29
+32                <action android:name="android.intent.action.MAIN" />
+32-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:19:17-69
+32-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:19:25-66
+33
+34                <category android:name="android.intent.category.LAUNCHER" />
+34-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:21:17-77
+34-->C:\Users\The other person\Documents\projects\codefellows\401\taskmaster\taskmaster\app\src\main\AndroidManifest.xml:21:27-74
+35            </intent-filter>
+36        </activity>
+37        <activity
+37-->[com.amplifyframework:core:1.17.4] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\dbfeef8b9a45a311f5c11384ebfbd5cd\jetified-core-1.17.4\AndroidManifest.xml:27:9-29:54
+38            android:name="com.amplifyframework.devmenu.DeveloperMenuActivity"
+38-->[com.amplifyframework:core:1.17.4] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\dbfeef8b9a45a311f5c11384ebfbd5cd\jetified-core-1.17.4\AndroidManifest.xml:28:13-78
+39            android:theme="@style/OverlayActivity" />
+39-->[com.amplifyframework:core:1.17.4] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\dbfeef8b9a45a311f5c11384ebfbd5cd\jetified-core-1.17.4\AndroidManifest.xml:29:13-51
+40
+41        <service
+41-->[androidx.room:room-runtime:2.3.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\4697116d8dfb0587edd7e3636671009b\room-runtime-2.3.0\AndroidManifest.xml:25:9-28:40
+42            android:name="androidx.room.MultiInstanceInvalidationService"
+42-->[androidx.room:room-runtime:2.3.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\4697116d8dfb0587edd7e3636671009b\room-runtime-2.3.0\AndroidManifest.xml:26:13-74
+43            android:directBootAware="true"
+43-->[androidx.room:room-runtime:2.3.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\4697116d8dfb0587edd7e3636671009b\room-runtime-2.3.0\AndroidManifest.xml:27:13-43
+44            android:exported="false" />
+44-->[androidx.room:room-runtime:2.3.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\4697116d8dfb0587edd7e3636671009b\room-runtime-2.3.0\AndroidManifest.xml:28:13-37
+45
+46        <uses-library
+46-->[com.amazonaws:aws-android-sdk-core:2.23.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\4b77a76fa9ebdebbb9eb294ffecba224\jetified-aws-android-sdk-core-2.23.0\AndroidManifest.xml:11:9-13:40
+47            android:name="org.apache.http.legacy"
+47-->[com.amazonaws:aws-android-sdk-core:2.23.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\4b77a76fa9ebdebbb9eb294ffecba224\jetified-aws-android-sdk-core-2.23.0\AndroidManifest.xml:12:13-50
+48            android:required="false" /> <!-- The activities will be merged into the manifest of the hosting app. -->
+48-->[com.amazonaws:aws-android-sdk-core:2.23.0] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\4b77a76fa9ebdebbb9eb294ffecba224\jetified-aws-android-sdk-core-2.23.0\AndroidManifest.xml:13:13-37
+49        <activity
+49-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:12:5-271
+50            android:name="com.google.android.play.core.missingsplits.PlayCoreMissingSplitsActivity"
+50-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:12:15-102
+51            android:enabled="false"
+51-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:12:103-126
+52            android:exported="false"
+52-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:12:127-151
+53            android:launchMode="singleInstance"
+53-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:12:204-239
+54            android:process=":playcore_missing_splits_activity"
+54-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:12:152-203
+55            android:stateNotNeeded="true" />
+55-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:12:240-269
+56        <activity
+56-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:13:5-226
+57            android:name="com.google.android.play.core.common.PlayCoreDialogWrapperActivity"
+57-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:13:15-95
+58            android:enabled="false"
+58-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:13:96-119
+59            android:exported="false"
+59-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:13:120-144
+60            android:stateNotNeeded="true"
+60-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:13:145-174
+61            android:theme="@style/Theme.PlayCore.Transparent" /> <!-- The services will be merged into the manifest of the hosting app. -->
+61-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:13:175-224
+62        <service
+62-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:16:5-18:15
+63            android:name="com.google.android.play.core.assetpacks.AssetPackExtractionService"
+63-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:16:14-95
+64            android:enabled="false"
+64-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:16:96-119
+65            android:exported="true" >
+65-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:16:120-143
+66            <meta-data
+66-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:17:7-108
+67                android:name="com.google.android.play.core.assetpacks.versionCode"
+67-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:17:18-84
+68                android:value="10901" />
+68-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:17:85-106
+69        </service>
+70        <service
+70-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:19:5-147
+71            android:name="com.google.android.play.core.assetpacks.ExtractionForegroundService"
+71-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:19:14-96
+72            android:enabled="false"
+72-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:19:97-120
+73            android:exported="false" />
+73-->[com.google.android.play:core:1.9.1] C:\Users\The other person\.gradle\caches\transforms-2\files-2.1\e1f0e3d4692b2eddac6c936e7909ad2e\jetified-core-1.9.1\AndroidManifest.xml:19:121-145
+74    </application>
+75
+76</manifest>

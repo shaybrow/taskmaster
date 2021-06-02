@@ -1,0 +1,106 @@
+[
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_add_task.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_add_task.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_task_details.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_task_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_all_tasks.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_all_tasks.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_task_list.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_task_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_profile.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_user_profile.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_login_task_user.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_login_task_user.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_signup.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_signup.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v24\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\raw_amplifyconfiguration.json.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\raw\\amplifyconfiguration.json"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_signup_confirmation.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\activity_signup_confirmation.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_task.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\layout\\fragment_task.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\build\\intermediates\\res\\merged\\debug\\raw_awsconfiguration.json.flat",
+        "source": "C:\\Users\\The other person\\Documents\\projects\\codefellows\\401\\taskmaster\\taskmaster\\app\\src\\main\\res\\raw\\awsconfiguration.json"
+    }
+]

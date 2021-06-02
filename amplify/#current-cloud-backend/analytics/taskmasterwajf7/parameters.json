@@ -1,0 +1,22 @@
+{
+    "appName": "taskmasterwajf7",
+    "roleName": "pinpointLambdaRole35823b93",
+    "cloudformationPolicyName": "cloudformationPolicy35823b93",
+    "cloudWatchPolicyName": "cloudWatchPolicy35823b93",
+    "pinpointPolicyName": "pinpointPolicy35823b93",
+    "authPolicyName": "pinpoint_amplify_35823b93",
+    "unauthPolicyName": "pinpoint_amplify_35823b93",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "appId": "268e7e75750842af965c23c60c43cf25"
+}

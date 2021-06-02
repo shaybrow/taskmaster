@@ -1,0 +1,18 @@
+com/shaybrow/taskmaster1/test/BuildConfig.java
+ com.shaybrow.taskmaster1.test.BuildConfig
+com/shaybrow/taskmaster1/ExampleInstrumentedTest.java
+ com.shaybrow.taskmaster1.ExampleInstrumentedTest
+com/shaybrow/taskmaster1/UpdateUsernameTest.java
+ com.shaybrow.taskmaster1.UpdateUsernameTest
+ com.shaybrow.taskmaster1.UpdateUsernameTest$1
+com/shaybrow/taskmaster1/UsernameActivityTest.java
+ com.shaybrow.taskmaster1.UsernameActivityTest
+ com.shaybrow.taskmaster1.UsernameActivityTest$1
+com/shaybrow/taskmaster1/MainActivityUIElementsTest.java
+ com.shaybrow.taskmaster1.MainActivityUIElementsTest
+com/shaybrow/taskmaster1/TaskDetailsTest.java
+ com.shaybrow.taskmaster1.TaskDetailsTest
+ com.shaybrow.taskmaster1.TaskDetailsTest$1
+com/shaybrow/taskmaster1/AddTaskTest.java
+ com.shaybrow.taskmaster1.AddTaskTest
+ com.shaybrow.taskmaster1.AddTaskTest$1

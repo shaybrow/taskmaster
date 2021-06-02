@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:context=".activities.addTask">
+
+    <EditText
+        android:id="@+id/importTaskBody"
+        android:layout_width="352dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="72dp"
+        android:contentDescription="@string/task_title"
+        android:ems="10"
+        android:hint="Do Something"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskTitle" />
+
+    <EditText
+        android:id="@+id/taskTitle"
+        android:layout_width="355dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="56dp"
+        android:contentDescription="@string/task_title"
+        android:ems="10"
+        android:hint="My Task"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addTaskTitle" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task Title"
+        app:layout_constraintBottom_toTopOf="@+id/taskTitle"
+        app:layout_constraintStart_toStartOf="@+id/taskTitle"
+        app:layout_constraintTop_toBottomOf="@+id/addTaskTitle"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/taskBodyLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Task Description"
+        app:layout_constraintBottom_toTopOf="@+id/importTaskBody"
+        app:layout_constraintStart_toStartOf="@+id/importTaskBody" />
+
+    <Button
+        android:id="@+id/submitTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="56dp"
+        android:text="ADD TASK"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="@+id/importTaskBody"
+        app:layout_constraintTop_toBottomOf="@+id/importTaskBody" />
+
+    <TextView
+        android:id="@+id/addTaskTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Add Task"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/taskTitle"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/submitted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="36dp"
+        android:text="Submitted!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/submitTask"
+        app:layout_constraintTop_toBottomOf="@+id/submitTask" />
+
+    <Spinner
+        android:id="@+id/teamSpinnerAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/submitTask"
+        app:layout_constraintTop_toBottomOf="@+id/importTaskBody"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/buttonAddImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Image"
+        app:layout_constraintBottom_toBottomOf="@+id/submitTask"
+        app:layout_constraintEnd_toEndOf="@+id/importTaskBody"
+        app:layout_constraintTop_toTopOf="@+id/submitTask" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
