@@ -1,3 +1,4 @@
+
 package com.shaybrow.taskmaster1;
 
 
@@ -11,14 +12,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.BitmapFactory;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Build;
@@ -30,38 +28,27 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.amazonaws.mobile.client.AWSMobileClient;
-import com.amazonaws.mobile.client.Callback;
-import com.amazonaws.mobile.client.UserStateDetails;
-import com.amazonaws.mobile.config.AWSConfiguration;
-
-import com.amplifyframework.AmplifyException;
 import com.amplifyframework.analytics.AnalyticsEvent;
-import com.amplifyframework.analytics.pinpoint.AWSPinpointAnalyticsPlugin;
-import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
-import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.LoginTaskUser;
 import com.amplifyframework.datastore.generated.model.Task;
 import com.amplifyframework.datastore.generated.model.Team;
-import com.amplifyframework.storage.s3.AWSS3StoragePlugin;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.shaybrow.taskmaster1.activities.Signup;
+import com.shaybrow.taskmaster1.activities.TaskDetails;
+import com.shaybrow.taskmaster1.activities.addTask;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -221,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         allTasks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent goToAllTasks = new Intent(MainActivity.this, allTasks.class);
+                Intent goToAllTasks = new Intent(MainActivity.this, com.shaybrow.taskmaster1.activities.allTasks.class);
                 startActivity(goToAllTasks);
             }
         });
@@ -438,4 +425,5 @@ public class MainActivity extends AppCompatActivity implements TaskListAdapter.C
         };
 
     }
+
 }

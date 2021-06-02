@@ -1,0 +1,96 @@
+{
+    "UserAgent": "aws-amplify-cli/2.0",
+    "Version": "1.0",
+    "analytics": {
+        "plugins": {
+            "awsPinpointAnalyticsPlugin": {
+                "pinpointAnalytics": {
+                    "appId": "268e7e75750842af965c23c60c43cf25",
+                    "region": "us-west-2"
+                },
+                "pinpointTargeting": {
+                    "region": "us-west-2"
+                }
+            }
+        }
+    },
+    "api": {
+        "plugins": {
+            "awsAPIPlugin": {
+                "taskmaster": {
+                    "endpointType": "GraphQL",
+                    "endpoint": "https://cwjozv4htvcb5gtz3pymzjlh3m.appsync-api.us-west-2.amazonaws.com/graphql",
+                    "region": "us-west-2",
+                    "authorizationType": "API_KEY",
+                    "apiKey": "da2-q4lkqaqwarc57jwdcuz5kwqrgi"
+                }
+            }
+        }
+    },
+    "auth": {
+        "plugins": {
+            "awsCognitoAuthPlugin": {
+                "UserAgent": "aws-amplify-cli/0.1.0",
+                "Version": "0.1.0",
+                "IdentityManager": {
+                    "Default": {}
+                },
+                "AppSync": {
+                    "Default": {
+                        "ApiUrl": "https://cwjozv4htvcb5gtz3pymzjlh3m.appsync-api.us-west-2.amazonaws.com/graphql",
+                        "Region": "us-west-2",
+                        "AuthMode": "API_KEY",
+                        "ApiKey": "da2-q4lkqaqwarc57jwdcuz5kwqrgi",
+                        "ClientDatabasePrefix": "taskmaster_API_KEY"
+                    }
+                },
+                "CredentialsProvider": {
+                    "CognitoIdentity": {
+                        "Default": {
+                            "PoolId": "us-west-2:ec674c9f-ea5f-4243-bf83-98a925275f61",
+                            "Region": "us-west-2"
+                        }
+                    }
+                },
+                "CognitoUserPool": {
+                    "Default": {
+                        "PoolId": "us-west-2_LZdQ8gnA2",
+                        "AppClientId": "2ogm0o7g8248klffi1o84p96bk",
+                        "Region": "us-west-2"
+                    }
+                },
+                "Auth": {
+                    "Default": {
+                        "authenticationFlowType": "USER_SRP_AUTH"
+                    }
+                },
+                "S3TransferUtility": {
+                    "Default": {
+                        "Bucket": "taskmasterbucket92000-dev",
+                        "Region": "us-west-2"
+                    }
+                },
+                "PinpointAnalytics": {
+                    "Default": {
+                        "AppId": "268e7e75750842af965c23c60c43cf25",
+                        "Region": "us-west-2"
+                    }
+                },
+                "PinpointTargeting": {
+                    "Default": {
+                        "Region": "us-west-2"
+                    }
+                }
+            }
+        }
+    },
+    "storage": {
+        "plugins": {
+            "awsS3StoragePlugin": {
+                "bucket": "taskmasterbucket92000-dev",
+                "region": "us-west-2",
+                "defaultAccessLevel": "guest"
+            }
+        }
+    }
+}

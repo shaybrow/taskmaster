@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shaybrow.taskmaster1">
@@ -13,15 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Taskmaster1">
         <activity android:name="com.amplifyframework.datastore.generated.model.LoginTaskUser"></activity>
-        <activity android:name=".SignupConfirmation" />
-        <activity android:name=".Signup" />
+        <activity android:name=".activities.SignupConfirmation" />
+        <activity android:name=".activities.Signup" />
         <activity android:name=".TaskList" />
-        <activity android:name=".TaskDetails" >
+        <activity android:name=".activities.TaskDetails" >
 
         </activity>
         <activity android:name=".UserProfile" />
-        <activity android:name=".allTasks" />
-        <activity android:name=".addTask">
+        <activity android:name=".activities.allTasks" />
+        <activity android:name=".activities.addTask">
             <intent-filter android:label="add task">
                 <action android:name="android.intent.action.SEND"></action>
                 <category android:name="android.intent.category.DEFAULT"></category>
@@ -44,5 +45,6 @@
             </intent-filter>
         </service>
     </application>
+
 
 </manifest>
